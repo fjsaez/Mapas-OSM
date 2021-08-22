@@ -1,0 +1,255 @@
+object FPrinc: TFPrinc
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'Dubbi Maps'
+  ClientHeight = 651
+  ClientWidth = 455
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object LayPrinc: TLayout
+    Align = Contents
+    Size.Width = 455.000000000000000000
+    Size.Height = 651.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object ToolBar1: TToolBar
+      Size.Width = 455.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      TintColor = claGold
+      object Label4: TLabel
+        Align = Client
+        Size.Width = 359.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'toollabel'
+        TextSettings.HorzAlign = Center
+        Text = 'Mis Mapas OSM'
+        TabOrder = 1
+      end
+      object SBAcerca: TSpeedButton
+        Align = Left
+        IconTintColor = claMediumblue
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'infotoolbutton'
+        OnClick = SBAcercaClick
+      end
+      object SBSalir: TSpeedButton
+        Align = Right
+        IconTintColor = claMediumblue
+        Position.X = 407.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'escapetoolbutton'
+        OnClick = SBSalirClick
+      end
+    end
+    object LayMapa: TLayout
+      Align = Client
+      Size.Width = 455.000000000000000000
+      Size.Height = 443.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object WebBrowser: TWebBrowser
+        Align = Client
+        Size.Width = 455.000000000000000000
+        Size.Height = 443.000000000000000000
+        Size.PlatformDefault = False
+        URL = 'https://www.openstreetmap.org/#map=6/6.447/-66.579'
+        OnDidFinishLoad = WebBrowserDidFinishLoad
+      end
+    end
+    object LayPanel: TLayout
+      Align = Bottom
+      Position.Y = 491.000000000000000000
+      Size.Width = 455.000000000000000000
+      Size.Height = 160.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Color = claPapayawhip
+        Size.Width = 455.000000000000000000
+        Size.Height = 160.000000000000000000
+        Size.PlatformDefault = False
+        object EUrl: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 0
+          TabStop = False
+          ReadOnly = True
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claBlue
+          Size.Width = 455.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style]
+        end
+        object LayBuscar: TLayout
+          Align = Top
+          Position.Y = 90.000000000000000000
+          Size.Width = 455.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object BBuscar: TButton
+            Align = Right
+            Position.X = 305.000000000000000000
+            Size.Width = 150.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Buscar'
+            TintColor = claGold
+            OnClick = BBuscarClick
+          end
+          object SwGPS: TSwitch
+            Align = Left
+            IsChecked = False
+            Position.X = 116.000000000000000000
+            Position.Y = 2.000000000000000000
+            Size.Width = 44.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            OnClick = SwGPSSwitch
+            OnSwitch = SwGPSSwitch
+          end
+          object Label5: TLabel
+            Align = Left
+            Margins.Left = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Size.Width = 100.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Usar GPS'
+            TabOrder = 2
+          end
+        end
+        object LayLatitud: TLayout
+          Align = Top
+          Size.Width = 455.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Label1: TLabel
+            Align = Left
+            Margins.Left = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Latitud:'
+            TabOrder = 0
+          end
+          object ELat: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 1
+            KeyboardType = DecimalNumberPad
+            FilterChar = '1234567890.'
+            Margins.Left = 5.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Size.Width = 319.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyDown = ELatKeyDown
+            OnKeyUp = ELatKeyDown
+          end
+        end
+        object LayLongitud: TLayout
+          Align = Top
+          Position.Y = 30.000000000000000000
+          Size.Width = 455.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object Label2: TLabel
+            Align = Left
+            Margins.Left = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Longitud:'
+            TabOrder = 0
+          end
+          object ELon: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Client
+            TabOrder = 1
+            KeyboardType = DecimalNumberPad
+            Margins.Left = 5.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Size.Width = 319.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyDown = ELatKeyDown
+            OnKeyUp = ELatKeyDown
+          end
+        end
+        object LayZoom: TLayout
+          Align = Top
+          Position.Y = 60.000000000000000000
+          Size.Width = 455.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          object Label3: TLabel
+            Align = Left
+            Margins.Left = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Size.Width = 100.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Zoom:'
+            TabOrder = 0
+          end
+          object TrBarZoom: TTrackBar
+            Align = Client
+            CanParentFocus = True
+            Max = 20.000000000000000000
+            Min = 1.000000000000000000
+            Orientation = Horizontal
+            Size.Width = 223.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            TabStop = False
+            Value = 5.000000000000000000
+            OnChange = TrBarZoomChange
+          end
+          object LZoom: TLabel
+            Align = Right
+            Margins.Left = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Position.X = 347.000000000000000000
+            Size.Width = 100.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = '0'
+            TabOrder = 2
+          end
+        end
+      end
+    end
+  end
+  object LocSensor: TLocationSensor
+    OnLocationChanged = LocSensorLocationChanged
+    Left = 152
+    Top = 88
+  end
+end

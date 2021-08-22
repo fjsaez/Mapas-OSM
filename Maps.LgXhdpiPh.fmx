@@ -1,0 +1,53 @@
+inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 0
+  inherited Panel1: TPanel
+    Align = Bottom
+    Position.Y = 454.000000000000000000
+    Size.Width = 450.000000000000000000
+    inherited LZoom: TLabel
+      Position.X = 368.000000000000000000
+      Position.Y = 127.000000000000000000
+    end
+    inherited Label1: TLabel
+      Size.Width = 113.000000000000000000
+    end
+    inherited Label2: TLabel
+      Size.Width = 113.000000000000000000
+    end
+    inherited Label3: TLabel
+      Position.Y = 127.000000000000000000
+      Size.Width = 57.000000000000000000
+    end
+    inherited BSearch: TButton
+      Align = Horizontal
+      Position.Y = 178.000000000000000000
+      Size.Width = 450.000000000000000000
+      Size.PlatformDefault = False
+    end
+    inherited ELat: TEdit
+      Position.X = 152.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.PlatformDefault = False
+    end
+    inherited ELon: TEdit
+      Position.X = 152.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.PlatformDefault = False
+    end
+    inherited TrBarZoom: TTrackBar
+      Position.Y = 120.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.PlatformDefault = False
+    end
+    inherited EUrl: TEdit
+      Size.Width = 450.000000000000000000
+    end
+  end
+  inherited WebBrowser: TWebBrowser
+    Align = Client
+    Size.Width = 450.000000000000000000
+    Size.Height = 454.000000000000000000
+  end
+end

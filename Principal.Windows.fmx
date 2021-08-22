@@ -1,0 +1,38 @@
+inherited FPrinc_Windows: TFPrinc_Windows
+  Caption = 'Mis Mapas'
+  Position = ScreenCenter
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inherited LayPrinc: TLayout
+    inherited LayPanel: TLayout
+      inherited Rectangle1: TRectangle
+        inherited EUrl: TEdit
+          Size.Height = 40.000000000000000000
+        end
+        inherited LayBuscar: TLayout
+          inherited SwGPS: TSwitch
+            Size.Height = 30.000000000000000000
+          end
+        end
+        inherited LayLatitud: TLayout
+          inherited ELat: TEdit
+            Margins.Top = 3.000000000000000000
+            Size.Height = 27.000000000000000000
+          end
+        end
+        inherited LayLongitud: TLayout
+          inherited ELon: TEdit
+            Margins.Top = 3.000000000000000000
+            Size.Height = 27.000000000000000000
+          end
+        end
+        inherited LayZoom: TLayout
+          inherited TrBarZoom: TTrackBar
+            Margins.Top = 3.000000000000000000
+            Size.Height = 19.000000000000000000
+          end
+        end
+      end
+    end
+  end
+end

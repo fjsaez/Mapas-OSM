@@ -1,0 +1,73 @@
+inherited FPrinc_LgXhdpiTb: TFPrinc_LgXhdpiTb
+  ClientHeight = 829
+  ClientWidth = 480
+  DesignerMasterStyle = 3
+  inherited LayPrinc: TLayout
+    Size.Width = 480.000000000000000000
+    Size.Height = 829.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Width = 480.000000000000000000
+      inherited Label4: TLabel
+        Size.Width = 384.000000000000000000
+      end
+      inherited SBSalir: TSpeedButton
+        Position.X = 432.000000000000000000
+      end
+    end
+    inherited LayMapa: TLayout
+      Size.Width = 480.000000000000000000
+      Size.Height = 621.000000000000000000
+      inherited WebBrowser: TWebBrowser
+        Size.Width = 480.000000000000000000
+        Size.Height = 621.000000000000000000
+      end
+    end
+    inherited LayPanel: TLayout
+      Position.Y = 669.000000000000000000
+      Size.Width = 480.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Width = 480.000000000000000000
+        inherited EUrl: TEdit
+          Size.Width = 480.000000000000000000
+          Size.Height = 40.000000000000000000
+        end
+        inherited LayBuscar: TLayout
+          Size.Width = 480.000000000000000000
+          inherited BBuscar: TButton
+            Position.X = 330.000000000000000000
+          end
+          inherited SwGPS: TSwitch
+            Size.Height = 30.000000000000000000
+          end
+        end
+        inherited LayLatitud: TLayout
+          Size.Width = 480.000000000000000000
+          inherited ELat: TEdit
+            Margins.Top = 3.000000000000000000
+            Size.Width = 344.000000000000000000
+            Size.Height = 27.000000000000000000
+          end
+        end
+        inherited LayLongitud: TLayout
+          Size.Width = 480.000000000000000000
+          inherited ELon: TEdit
+            Margins.Top = 3.000000000000000000
+            Size.Width = 344.000000000000000000
+            Size.Height = 27.000000000000000000
+          end
+        end
+        inherited LayZoom: TLayout
+          Size.Width = 480.000000000000000000
+          inherited TrBarZoom: TTrackBar
+            Margins.Top = 3.000000000000000000
+            Size.Width = 248.000000000000000000
+            Size.Height = 27.000000000000000000
+          end
+          inherited LZoom: TLabel
+            Position.X = 372.000000000000000000
+          end
+        end
+      end
+    end
+  end
+end

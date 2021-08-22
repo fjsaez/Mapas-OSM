@@ -1,0 +1,33 @@
+inherited FAcerca_LgXhdpiPh: TFAcerca_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited LayPrinc: TLayout
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    inherited RectPrinc: TRectangle
+      inherited LayAcerca: TLayout
+        inherited LayNombre: TLayout
+          inherited Label1: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        inherited LayVersion: TLayout
+          inherited Label2: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        inherited LayAutor: TLayout
+          inherited Label3: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        inherited LayLugarFecha: TLayout
+          inherited Label4: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+      end
+    end
+  end
+end

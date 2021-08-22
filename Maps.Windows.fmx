@@ -1,0 +1,67 @@
+inherited Form1_Windows: TForm1_Windows
+  Position = ScreenCenter
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inherited Panel1: TPanel
+    Align = Bottom
+    Position.Y = 376.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 104.000000000000000000
+    inherited LZoom: TLabel
+      Position.X = 416.000000000000000000
+      Position.Y = 31.000000000000000000
+      Size.Width = 25.000000000000000000
+      Text = '0'
+      TabOrder = 3
+    end
+    inherited Label1: TLabel
+      Position.X = 56.000000000000000000
+      Position.Y = 23.000000000000000000
+      TabOrder = 4
+    end
+    inherited Label2: TLabel
+      Position.X = 56.000000000000000000
+      Position.Y = 47.000000000000000000
+      TabOrder = 6
+    end
+    inherited Label3: TLabel
+      Position.X = 232.000000000000000000
+      Position.Y = 33.000000000000000000
+      TabOrder = 7
+    end
+    inherited BSearch: TButton
+      Position.X = 480.000000000000000000
+      Position.Y = 17.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 46.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = BBuscarClick
+    end
+    inherited ELat: TEdit
+      TabOrder = 0
+      Position.X = 120.000000000000000000
+      Position.Y = 18.000000000000000000
+      OnChange = ELatChange
+    end
+    inherited ELon: TEdit
+      TabOrder = 1
+      Position.X = 120.000000000000000000
+      Position.Y = 42.000000000000000000
+      OnChange = ELatChange
+    end
+    inherited TrBarZoom: TTrackBar
+      Position.X = 296.000000000000000000
+      Position.Y = 32.000000000000000000
+      TabOrder = 2
+    end
+    inherited EUrl: TEdit
+      Position.Y = 72.000000000000000000
+      Size.Width = 640.000000000000000000
+    end
+  end
+  inherited WebBrowser: TWebBrowser
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 376.000000000000000000
+  end
+end

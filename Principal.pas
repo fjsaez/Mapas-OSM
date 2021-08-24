@@ -10,7 +10,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Maps,
   FMX.WebBrowser, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, DubbiUtiles,
   FMX.Layouts, FMX.Objects, System.Sensors, System.Sensors.Components,
-  System.Math;
+  System.Math, FMX.Ani;
 
 type
 
@@ -40,6 +40,11 @@ type
     LocSensor: TLocationSensor;
     SwGPS: TSwitch;
     Label5: TLabel;
+    FloatAnimation1: TFloatAnimation;
+    Circle1: TCircle;
+    Layout1: TLayout;
+    Line1: TLine;
+    Line2: TLine;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -111,10 +116,18 @@ begin
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
+var
+  P1,P2: TPointF;
 begin
+  P1:=TPointF.Create(5,5);
+  P2:=TPointF.Create(100,100);
   LZoom.Text:=TrBarZoom.Value.ToString;
+  WebBrowser.InsertComponent(Circle1);
   WebBrowser.URL:=MapURL;
   WebBrowser.StartLoading;
+  {WebBrowser.Canvas.BeginScene;
+  WebBrowser.Canvas.DrawLine(P1,P2,1);
+  WebBrowser.Canvas.EndScene;}
 end;
 
 procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,

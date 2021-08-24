@@ -65,6 +65,36 @@ object FPrinc: TFPrinc
         Size.PlatformDefault = False
         URL = 'https://www.openstreetmap.org/#map=6/6.447/-66.579'
         OnDidFinishLoad = WebBrowserDidFinishLoad
+        object Layout1: TLayout
+          Align = Client
+          Size.Width = 455.000000000000000000
+          Size.Height = 443.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Circle1: TCircle
+            Align = Center
+            Fill.Color = claRed
+            Size.Width = 11.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Line1: TLine
+            Align = Center
+            LineType = Diagonal
+            RotationAngle = 135.000000000000000000
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Line2: TLine
+            Align = Center
+            LineType = Diagonal
+            RotationAngle = 45.000000000000000000
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
       end
     end
     object LayPanel: TLayout
@@ -228,8 +258,14 @@ object FPrinc: TFPrinc
             Size.PlatformDefault = False
             TabOrder = 1
             TabStop = False
-            Value = 5.000000000000000000
+            Value = 10.000000000000000000
             OnChange = TrBarZoomChange
+            object FloatAnimation1: TFloatAnimation
+              Duration = 0.200000002980232200
+              PropertyName = 'Value'
+              StartValue = 0.000000000000000000
+              StopValue = 0.000000000000000000
+            end
           end
           object LZoom: TLabel
             Align = Right

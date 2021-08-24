@@ -20,6 +20,10 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
       inherited WebBrowser: TWebBrowser
         Size.Width = 450.000000000000000000
         Size.Height = 487.000000000000000000
+        inherited Layout1: TLayout
+          Size.Width = 450.000000000000000000
+          Size.Height = 487.000000000000000000
+        end
       end
     end
     inherited LayPanel: TLayout
@@ -29,15 +33,11 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
         Size.Width = 450.000000000000000000
         inherited EUrl: TEdit
           Size.Width = 450.000000000000000000
-          Size.Height = 40.000000000000000000
         end
         inherited LayBuscar: TLayout
           Size.Width = 450.000000000000000000
           inherited BBuscar: TButton
             Position.X = 300.000000000000000000
-          end
-          inherited SwGPS: TSwitch
-            Size.Height = 30.000000000000000000
           end
         end
         inherited LayLatitud: TLayout
@@ -45,7 +45,6 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           inherited ELat: TEdit
             Margins.Top = 3.000000000000000000
             Size.Width = 314.000000000000000000
-            Size.Height = 27.000000000000000000
           end
         end
         inherited LayLongitud: TLayout
@@ -53,7 +52,6 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           inherited ELon: TEdit
             Margins.Top = 3.000000000000000000
             Size.Width = 314.000000000000000000
-            Size.Height = 27.000000000000000000
           end
         end
         inherited LayZoom: TLayout
@@ -61,7 +59,6 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           inherited TrBarZoom: TTrackBar
             Margins.Top = 3.000000000000000000
             Size.Width = 218.000000000000000000
-            Size.Height = 27.000000000000000000
           end
           inherited LZoom: TLabel
             Position.X = 342.000000000000000000

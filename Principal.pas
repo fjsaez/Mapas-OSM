@@ -120,21 +120,20 @@ var
   P1,P2: TPointF;
 begin
   P1:=TPointF.Create(5,5);
-  P2:=TPointF.Create(100,100);
+  P2:=TPointF.Create(300,300);
   LZoom.Text:=TrBarZoom.Value.ToString;
-  WebBrowser.InsertComponent(Circle1);
   WebBrowser.URL:=MapURL;
   WebBrowser.StartLoading;
-  {WebBrowser.Canvas.BeginScene;
+  WebBrowser.Canvas.BeginScene;
   WebBrowser.Canvas.DrawLine(P1,P2,1);
-  WebBrowser.Canvas.EndScene;}
+  WebBrowser.Canvas.EndScene;
 end;
 
 procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,
   NewLocation: TLocationCoord2D);
 begin
-  Ubication.Lat:=FormatFloat('#0.#####',NewLocation.Latitude);
-  Ubication.Lon:=FormatFloat('#0.#####',NewLocation.Longitude);
+  Ubication.Lat:=FormatFloat('#0.######',NewLocation.Latitude);
+  Ubication.Lon:=FormatFloat('#0.######',NewLocation.Longitude);
   Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
   if not IsNaN(NewLocation.Latitude) then ELat.Text:=Ubication.Lat;
   if not IsNaN(NewLocation.Longitude) then ELon.Text:=Ubication.Lon;
@@ -164,12 +163,20 @@ begin
 end;
 
 procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);
+//var
+  //P1,P2: TPointF;
 begin
   ParseURLToCoords(WebBrowser.URL,Ubication);
   EUrl.Text:=WebBrowser.URL;
   ELat.Text:=Ubication.Lat;
   ELon.Text:=Ubication.Lon;
   TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
+
+  {P1:=TPointF.Create(5,5);
+  P2:=TPointF.Create(300,300);
+  WebBrowser.Canvas.BeginScene;
+  WebBrowser.Canvas.DrawLine(P1,P2,1);
+  WebBrowser.Canvas.EndScene;}
 end;
 
 end.

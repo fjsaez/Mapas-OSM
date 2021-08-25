@@ -2,7 +2,7 @@ object FPrinc: TFPrinc
   Left = 0
   Top = 0
   BorderStyle = Single
-  Caption = 'Dubbi Maps'
+  Caption = 'Mis Mapas OSM'
   ClientHeight = 651
   ClientWidth = 455
   FormFactor.Width = 320
@@ -144,7 +144,7 @@ object FPrinc: TFPrinc
           object SwGPS: TSwitch
             Align = Left
             IsChecked = False
-            Position.X = 116.000000000000000000
+            Position.X = 121.000000000000000000
             Position.Y = 2.000000000000000000
             Size.Width = 44.000000000000000000
             Size.Height = 26.000000000000000000
@@ -158,7 +158,7 @@ object FPrinc: TFPrinc
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 100.000000000000000000
+            Size.Width = 105.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             Text = 'Usar GPS'
@@ -241,7 +241,7 @@ object FPrinc: TFPrinc
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 100.000000000000000000
+            Size.Width = 105.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             Text = 'Zoom:'
@@ -253,7 +253,7 @@ object FPrinc: TFPrinc
             Max = 20.000000000000000000
             Min = 1.000000000000000000
             Orientation = Horizontal
-            Size.Width = 223.000000000000000000
+            Size.Width = 218.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1

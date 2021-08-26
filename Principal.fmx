@@ -124,8 +124,7 @@ object FPrinc: TFPrinc
           StyledSettings = [Family, Style]
         end
         object LayBuscar: TLayout
-          Align = Top
-          Position.Y = 90.000000000000000000
+          Align = MostTop
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
@@ -144,7 +143,7 @@ object FPrinc: TFPrinc
           object SwGPS: TSwitch
             Align = Left
             IsChecked = False
-            Position.X = 121.000000000000000000
+            Position.X = 91.000000000000000000
             Position.Y = 2.000000000000000000
             Size.Width = 44.000000000000000000
             Size.Height = 26.000000000000000000
@@ -155,42 +154,64 @@ object FPrinc: TFPrinc
           end
           object Label5: TLabel
             Align = Left
+            StyledSettings = [Family, FontColor]
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 105.000000000000000000
+            Size.Width = 75.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
             Text = 'Usar GPS'
             TabOrder = 2
           end
         end
         object LayLatitud: TLayout
           Align = Top
+          Position.Y = 30.000000000000000000
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
           object Label1: TLabel
             Align = Left
+            StyledSettings = [Family, FontColor]
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 105.000000000000000000
+            Size.Width = 60.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
-            Text = 'Latitud:'
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Lon/Lat:'
             TabOrder = 0
           end
           object ELat: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Client
-            TabOrder = 1
+            TabOrder = 2
             KeyboardType = DecimalNumberPad
+            ReturnKeyType = Next
             FilterChar = '1234567890.'
             Margins.Left = 5.000000000000000000
             Margins.Right = 10.000000000000000000
-            Size.Width = 319.000000000000000000
+            Size.Width = 259.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyDown = ELatKeyDown
+            OnKeyUp = ELatKeyDown
+          end
+          object ELon: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Left
+            TabOrder = 1
+            KeyboardType = DecimalNumberPad
+            ReturnKeyType = Next
+            Position.X = 81.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Size.Width = 100.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             OnKeyDown = ELatKeyDown
@@ -199,30 +220,49 @@ object FPrinc: TFPrinc
         end
         object LayLongitud: TLayout
           Align = Top
-          Position.Y = 30.000000000000000000
+          Position.Y = 60.000000000000000000
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
           object Label2: TLabel
             Align = Left
+            StyledSettings = [Family, FontColor]
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 105.000000000000000000
+            Size.Width = 60.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
-            Text = 'Longitud:'
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'UTM:'
             TabOrder = 0
           end
-          object ELon: TEdit
+          object ENorte: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Client
-            TabOrder = 1
+            TabOrder = 2
             KeyboardType = DecimalNumberPad
+            ReturnKeyType = Done
+            FilterChar = '1234567890.'
             Margins.Left = 5.000000000000000000
             Margins.Right = 10.000000000000000000
-            Size.Width = 319.000000000000000000
+            Size.Width = 259.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            OnKeyDown = ELatKeyDown
+            OnKeyUp = ELatKeyDown
+          end
+          object EEste: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Left
+            TabOrder = 1
+            KeyboardType = DecimalNumberPad
+            ReturnKeyType = Done
+            Position.X = 81.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Size.Width = 100.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             OnKeyDown = ELatKeyDown
@@ -231,19 +271,22 @@ object FPrinc: TFPrinc
         end
         object LayZoom: TLayout
           Align = Top
-          Position.Y = 60.000000000000000000
+          Position.Y = 90.000000000000000000
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 4
           object Label3: TLabel
             Align = Left
+            StyledSettings = [Family, FontColor]
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 105.000000000000000000
+            Size.Width = 75.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
             Text = 'Zoom:'
             TabOrder = 0
           end
@@ -253,7 +296,7 @@ object FPrinc: TFPrinc
             Max = 20.000000000000000000
             Min = 1.000000000000000000
             Orientation = Horizontal
-            Size.Width = 218.000000000000000000
+            Size.Width = 248.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1

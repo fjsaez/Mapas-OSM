@@ -10,14 +10,17 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Maps,
   FMX.WebBrowser, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, DubbiUtiles,
   FMX.Layouts, FMX.Objects, System.Sensors, System.Sensors.Components,
-  System.Math, FMX.Ani;
+  System.Math, FMX.Ani, UTM_WGS84;
 
 type
+  TPosicion = record
+    X,Y: Single;
+    CG: TLocationCoord2D;
+  end;
 
   TFPrinc = class(TForm)
     WebBrowser: TWebBrowser;
     ELat: TEdit;
-    ELon: TEdit;
     BBuscar: TButton;
     Label1: TLabel;
     Label2: TLabel;
@@ -45,6 +48,9 @@ type
     Layout1: TLayout;
     Line1: TLine;
     Line2: TLine;
+    ELon: TEdit;
+    ENorte: TEdit;
+    EEste: TEdit;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -75,11 +81,22 @@ implementation
 
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
-{$R *.LgXhdpiPh.fmx ANDROID}
-{$R *.LgXhdpiTb.fmx ANDROID}
-{$R *.NmXhdpiPh.fmx ANDROID}
+{$R *.BAE2E2665F7E41AE9F0947E9D8BC3706.fmx ANDROID}
 
 uses AcercaFrm;
+
+procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
+var
+  LatLon: TRecLatLon;
+  UTM: TRecUTM;
+begin
+  LatLon.Lat:=CoordGPS.Latitude;
+  LatLon.Lon:=CoordGPS.Longitude;
+  LatLon_To_UTM(LatLon,UTM);
+  CoordPos.CG:=CoordGPS;
+  CoordPos.X:=UTM.X;
+  CoordPos.Y:=UTM.Y;
+end;
 
 procedure TFPrinc.AbrirVentana(const aFormClass: TComponentClass);
 begin
@@ -131,12 +148,25 @@ end;
 
 procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,
   NewLocation: TLocationCoord2D);
+var
+  UTM: TPosicion;
 begin
+  CargarCoordenadas(NewLocation,UTM);
   Ubication.Lat:=FormatFloat('#0.######',NewLocation.Latitude);
   Ubication.Lon:=FormatFloat('#0.######',NewLocation.Longitude);
+  Ubication.Este:=Round(UTM.X).ToString+' E';
+  Ubication.Norte:=Round(UTM.Y).ToString+' N';
   Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
-  if not IsNaN(NewLocation.Latitude) then ELat.Text:=Ubication.Lat;
-  if not IsNaN(NewLocation.Longitude) then ELon.Text:=Ubication.Lon;
+  if not IsNaN(NewLocation.Longitude) then
+  begin
+    ELon.Text:=Ubication.Lon;
+    EEste.Text:=Ubication.Este;
+  end;
+  if not IsNaN(NewLocation.Latitude) then
+  begin
+    ELat.Text:=Ubication.Lat;
+    ENorte.Text:=Ubication.Norte;
+  end;
   WebBrowser.URL:=Ubication.URLFull;
   WebBrowser.StartLoading;
 end;
@@ -154,6 +184,7 @@ end;
 procedure TFPrinc.SwGPSSwitch(Sender: TObject);
 begin
   LocSensor.Active:=SwGPS.IsChecked;
+  if SwGPS.IsChecked then TrBarZoom.Value:=15;
 end;
 
 procedure TFPrinc.TrBarZoomChange(Sender: TObject);

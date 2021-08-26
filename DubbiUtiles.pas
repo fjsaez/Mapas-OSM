@@ -13,6 +13,7 @@ uses FMX.Dialogs;
 type
   TUbication = record
     Lat,Lon,
+    Este,Norte,
     URLFull,
     Zoom: string;
   end;

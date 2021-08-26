@@ -1,10 +1,10 @@
-inherited FPrinc_LgXhdpiTb: TFPrinc_LgXhdpiTb
-  ClientHeight = 829
+inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706
+  ClientHeight = 914
   ClientWidth = 480
   DesignerMasterStyle = 3
   inherited LayPrinc: TLayout
     Size.Width = 480.000000000000000000
-    Size.Height = 829.000000000000000000
+    Size.Height = 914.000000000000000000
     inherited ToolBar1: TToolBar
       Size.Width = 480.000000000000000000
       inherited Label4: TLabel
@@ -16,18 +16,18 @@ inherited FPrinc_LgXhdpiTb: TFPrinc_LgXhdpiTb
     end
     inherited LayMapa: TLayout
       Size.Width = 480.000000000000000000
-      Size.Height = 621.000000000000000000
+      Size.Height = 706.000000000000000000
       inherited WebBrowser: TWebBrowser
         Size.Width = 480.000000000000000000
-        Size.Height = 621.000000000000000000
+        Size.Height = 706.000000000000000000
         inherited Layout1: TLayout
           Size.Width = 480.000000000000000000
-          Size.Height = 621.000000000000000000
+          Size.Height = 706.000000000000000000
         end
       end
     end
     inherited LayPanel: TLayout
-      Position.Y = 669.000000000000000000
+      Position.Y = 754.000000000000000000
       Size.Width = 480.000000000000000000
       inherited Rectangle1: TRectangle
         Size.Width = 480.000000000000000000
@@ -39,27 +39,40 @@ inherited FPrinc_LgXhdpiTb: TFPrinc_LgXhdpiTb
           inherited BBuscar: TButton
             Position.X = 330.000000000000000000
           end
+          inherited Label5: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
         inherited LayLatitud: TLayout
           Size.Width = 480.000000000000000000
+          inherited Label1: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
           inherited ELat: TEdit
-            Margins.Top = 3.000000000000000000
-            Size.Width = 189.000000000000000000
+            Position.X = 241.000000000000000000
           end
           inherited ELon: TEdit
-            Margins.Right = 10.000000000000000000
+            Size.Width = 155.000000000000000000
           end
         end
         inherited LayLongitud: TLayout
           Size.Width = 480.000000000000000000
+          inherited Label2: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited ENorte: TEdit
+            Position.X = 241.000000000000000000
+          end
           inherited EEste: TEdit
-            Size.Width = 195.000000000000000000
+            Size.Width = 155.000000000000000000
           end
         end
         inherited LayZoom: TLayout
           Size.Width = 480.000000000000000000
+          inherited Label3: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
           inherited TrBarZoom: TTrackBar
-            Margins.Top = 3.000000000000000000
             Size.Width = 273.000000000000000000
           end
           inherited LZoom: TLabel

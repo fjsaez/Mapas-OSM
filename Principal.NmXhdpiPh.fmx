@@ -44,21 +44,23 @@ inherited FPrinc_NmXhdpiPh: TFPrinc_NmXhdpiPh
           Size.Width = 400.000000000000000000
           inherited ELat: TEdit
             Margins.Top = 3.000000000000000000
-            Size.Width = 264.000000000000000000
+            Size.Width = 109.000000000000000000
+          end
+          inherited ELon: TEdit
+            Margins.Right = 10.000000000000000000
           end
         end
         inherited LayLongitud: TLayout
           Size.Width = 400.000000000000000000
-          inherited ELon: TEdit
-            Margins.Top = 3.000000000000000000
-            Size.Width = 264.000000000000000000
+          inherited EEste: TEdit
+            Size.Width = 115.000000000000000000
           end
         end
         inherited LayZoom: TLayout
           Size.Width = 400.000000000000000000
           inherited TrBarZoom: TTrackBar
             Margins.Top = 3.000000000000000000
-            Size.Width = 168.000000000000000000
+            Size.Width = 193.000000000000000000
           end
           inherited LZoom: TLabel
             Position.X = 292.000000000000000000

@@ -13,20 +13,40 @@ inherited FPrinc_Windows: TFPrinc_Windows
           inherited SwGPS: TSwitch
             Size.Height = 30.000000000000000000
           end
+          inherited Label5: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
         inherited LayLatitud: TLayout
+          inherited Label1: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
           inherited ELat: TEdit
+            Position.Y = 3.000000000000000000
             Margins.Top = 3.000000000000000000
             Size.Height = 27.000000000000000000
+          end
+          inherited ELon: TEdit
+            Margins.Right = 10.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 30.000000000000000000
           end
         end
         inherited LayLongitud: TLayout
-          inherited ELon: TEdit
-            Margins.Top = 3.000000000000000000
-            Size.Height = 27.000000000000000000
+          inherited Label2: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited ENorte: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EEste: TEdit
+            Size.Height = 30.000000000000000000
           end
         end
         inherited LayZoom: TLayout
+          inherited Label3: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
           inherited TrBarZoom: TTrackBar
             Margins.Top = 3.000000000000000000
             Size.Height = 19.000000000000000000

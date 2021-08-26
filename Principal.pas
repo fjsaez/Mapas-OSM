@@ -185,6 +185,8 @@ procedure TFPrinc.SwGPSSwitch(Sender: TObject);
 begin
   LocSensor.Active:=SwGPS.IsChecked;
   if SwGPS.IsChecked then TrBarZoom.Value:=15;
+  ELon.ReadOnly:=SwGPS.IsChecked;
+  ELat.ReadOnly:=SwGPS.IsChecked;
 end;
 
 procedure TFPrinc.TrBarZoomChange(Sender: TObject);

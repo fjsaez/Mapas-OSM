@@ -110,25 +110,12 @@ object FPrinc: TFPrinc
         Size.Width = 455.000000000000000000
         Size.Height = 160.000000000000000000
         Size.PlatformDefault = False
-        object EUrl: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
-          TabOrder = 0
-          TabStop = False
-          ReadOnly = True
-          TextSettings.Font.Size = 11.000000000000000000
-          TextSettings.FontColor = claBlue
-          Size.Width = 455.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Family, Style]
-        end
         object LayBuscar: TLayout
           Align = MostTop
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 1
+          TabOrder = 0
           object BBuscar: TButton
             Align = Right
             Position.X = 305.000000000000000000
@@ -173,7 +160,7 @@ object FPrinc: TFPrinc
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 2
+          TabOrder = 1
           object Label1: TLabel
             Align = Left
             StyledSettings = [Family, FontColor]
@@ -225,7 +212,7 @@ object FPrinc: TFPrinc
           Size.Width = 455.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 3
+          TabOrder = 2
           object Label2: TLabel
             Align = Left
             StyledSettings = [Family, FontColor]
@@ -272,12 +259,11 @@ object FPrinc: TFPrinc
           end
         end
         object LayZoom: TLayout
-          Align = Top
-          Position.Y = 90.000000000000000000
+          Align = Client
           Size.Width = 455.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 40.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 4
+          TabOrder = 3
           object Label3: TLabel
             Align = Left
             StyledSettings = [Family, FontColor]
@@ -285,7 +271,7 @@ object FPrinc: TFPrinc
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
             Size.Width = 75.000000000000000000
-            Size.Height = 30.000000000000000000
+            Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.Size = 14.000000000000000000
             TextSettings.Font.StyleExt = {00070000000000000004000000}
@@ -293,12 +279,12 @@ object FPrinc: TFPrinc
             TabOrder = 0
           end
           object TrBarZoom: TTrackBar
-            Align = Client
+            Align = Center
             CanParentFocus = True
             Max = 20.000000000000000000
             Min = 1.000000000000000000
             Orientation = Horizontal
-            Size.Width = 248.000000000000000000
+            Size.Width = 175.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -316,13 +302,42 @@ object FPrinc: TFPrinc
             Align = Right
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
-            Position.X = 347.000000000000000000
-            Size.Width = 100.000000000000000000
-            Size.Height = 30.000000000000000000
+            Position.X = 372.000000000000000000
+            Size.Width = 75.000000000000000000
+            Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TextSettings.HorzAlign = Center
             Text = '0'
             TabOrder = 2
+          end
+        end
+        object Layout2: TLayout
+          Align = Top
+          Position.Y = 90.000000000000000000
+          Size.Width = 455.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          object Label6: TLabel
+            Align = Left
+            StyledSettings = [Family, FontColor]
+            Margins.Left = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Size.Width = 60.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Rumbo:'
+            TabOrder = 0
+          end
+          object LRumbo: TLabel
+            Align = Client
+            Size.Width = 379.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
           end
         end
       end
@@ -330,6 +345,7 @@ object FPrinc: TFPrinc
   end
   object LocSensor: TLocationSensor
     OnLocationChanged = LocSensorLocationChanged
+    OnHeadingChanged = LocSensorHeadingChanged
     Left = 152
     Top = 88
   end

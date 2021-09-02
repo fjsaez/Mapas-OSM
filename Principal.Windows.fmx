@@ -6,9 +6,6 @@ inherited FPrinc_Windows: TFPrinc_Windows
   inherited LayPrinc: TLayout
     inherited LayPanel: TLayout
       inherited Rectangle1: TRectangle
-        inherited EUrl: TEdit
-          Size.Height = 40.000000000000000000
-        end
         inherited LayBuscar: TLayout
           inherited SwGPS: TSwitch
             Size.Height = 30.000000000000000000
@@ -49,6 +46,11 @@ inherited FPrinc_Windows: TFPrinc_Windows
           inherited TrBarZoom: TTrackBar
             Margins.Top = 3.000000000000000000
             Size.Height = 19.000000000000000000
+          end
+        end
+        inherited Layout2: TLayout
+          inherited Label6: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
         end
       end

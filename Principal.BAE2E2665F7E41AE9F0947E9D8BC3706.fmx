@@ -31,9 +31,6 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
       Size.Width = 480.000000000000000000
       inherited Rectangle1: TRectangle
         Size.Width = 480.000000000000000000
-        inherited EUrl: TEdit
-          Size.Width = 480.000000000000000000
-        end
         inherited LayBuscar: TLayout
           Size.Width = 480.000000000000000000
           inherited BBuscar: TButton
@@ -49,7 +46,7 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
           inherited ELat: TEdit
-            Position.X = 241.000000000000000000
+            Size.Width = 229.000000000000000000
           end
           inherited ELon: TEdit
             Size.Width = 155.000000000000000000
@@ -61,7 +58,7 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
           inherited ENorte: TEdit
-            Position.X = 241.000000000000000000
+            Size.Width = 229.000000000000000000
           end
           inherited EEste: TEdit
             Size.Width = 155.000000000000000000
@@ -73,10 +70,19 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
           inherited TrBarZoom: TTrackBar
-            Size.Width = 273.000000000000000000
+            Size.Width = 480.000000000000000000
           end
           inherited LZoom: TLabel
-            Position.X = 372.000000000000000000
+            Position.X = 397.000000000000000000
+          end
+        end
+        inherited Layout2: TLayout
+          Size.Width = 480.000000000000000000
+          inherited Label6: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited LRumbo: TLabel
+            Size.Width = 404.000000000000000000
           end
         end
       end

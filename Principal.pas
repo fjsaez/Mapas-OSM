@@ -27,7 +27,6 @@ type
     Label3: TLabel;
     LZoom: TLabel;
     TrBarZoom: TTrackBar;
-    EUrl: TEdit;
     SBAcerca: TSpeedButton;
     LayPrinc: TLayout;
     ToolBar1: TToolBar;
@@ -51,6 +50,9 @@ type
     ELon: TEdit;
     ENorte: TEdit;
     EEste: TEdit;
+    Layout2: TLayout;
+    Label6: TLabel;
+    LRumbo: TLabel;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -64,6 +66,8 @@ type
     procedure LocSensorLocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
     procedure SwGPSSwitch(Sender: TObject);
+    procedure LocSensorHeadingChanged(Sender: TObject;
+      const AHeading: THeading);
   private
     { Private declarations }
     procedure AbrirVentana(const aFormClass: TComponentClass);
@@ -96,6 +100,28 @@ begin
   CoordPos.CG:=CoordGPS;
   CoordPos.X:=UTM.X;
   CoordPos.Y:=UTM.Y;
+end;
+
+function Orientacion(Grados: double): string;
+begin
+  case Round(Grados) of
+    0..10,350..360: Result:='N';  //norte
+    11..34: Result:='N - NE';     //norte-noreste
+    35..54: Result:='NE';         //noreste
+    55..79: Result:='E - NE';     //este-noreste
+    80..100: Result:='E';         //este
+    101..124: Result:='E - SE';   //este-sureste
+    125..144: Result:='SE';       //sureste
+    145..169: Result:='S - SE';   //sur-sureste
+    170..190: Result:='S';        //sur
+    191..214: Result:='S - SW';   //sur-suroeste
+    215..234: Result:='SW';       //suroeste
+    235..259: Result:='W - SW';   //oeste-suroeste
+    260..280: Result:='W';        //oeste
+    281..304: Result:='W - NW';   //oeste-noroeste
+    305..324: Result:='NW';       //noroeste
+    325..349: Result:='N - NW';   //norte-noroeste
+  end;
 end;
 
 procedure TFPrinc.AbrirVentana(const aFormClass: TComponentClass);
@@ -144,6 +170,13 @@ begin
   WebBrowser.Canvas.BeginScene;
   WebBrowser.Canvas.DrawLine(P1,P2,1);
   WebBrowser.Canvas.EndScene;
+end;
+
+procedure TFPrinc.LocSensorHeadingChanged(Sender: TObject;
+  const AHeading: THeading);
+begin
+  LRumbo.Text:=FormatFloat('#0.#',AHeading.Azimuth)+'º '+
+               Orientacion(AHeading.Azimuth);
 end;
 
 procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,
@@ -196,20 +229,21 @@ begin
 end;
 
 procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);
-//var
-  //P1,P2: TPointF;
+var
+  P1,P2: TPointF;
 begin
   ParseURLToCoords(WebBrowser.URL,Ubication);
-  EUrl.Text:=WebBrowser.URL;
   ELat.Text:=Ubication.Lat;
   ELon.Text:=Ubication.Lon;
   TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
 
-  {P1:=TPointF.Create(5,5);
-  P2:=TPointF.Create(300,300);
+  P1:=TPointF.Create(0,0);
+  P2:=TPointF.Create(WebBrowser.Width,WebBrowser.Height);
   WebBrowser.Canvas.BeginScene;
-  WebBrowser.Canvas.DrawLine(P1,P2,1);
-  WebBrowser.Canvas.EndScene;}
+  WebBrowser.Canvas.Stroke.Thickness:=3;
+  WebBrowser.Canvas.Stroke.Color:=TAlphaColors.Red;
+  WebBrowser.Canvas.DrawLine(P1,P2,100);
+  WebBrowser.Canvas.EndScene;
 end;
 
 end.

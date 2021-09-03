@@ -175,7 +175,7 @@
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
         <AUP_WRITE_EXTERNAL_STORAGE>false</AUP_WRITE_EXTERNAL_STORAGE>
         <AUP_ACCESS_LOCATION_EXTRA_COMMANDS>true</AUP_ACCESS_LOCATION_EXTRA_COMMANDS>
-        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Mis Mapas OSM;versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Mis Mapas OSM;versionCode=1;versionName=1.5.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <AUP_ACCESS_MOCK_LOCATION>true</AUP_ACCESS_MOCK_LOCATION>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">

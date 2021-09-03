@@ -51,7 +51,7 @@ object FAcerca: TFAcerca
             TextSettings.Font.Size = 28.000000000000000000
             TextSettings.Font.StyleExt = {00070000000000000004000000}
             TextSettings.HorzAlign = Center
-            Text = 'Mis Mapas'
+            Text = 'Mis Mapas OSM'
             TabOrder = 0
           end
         end
@@ -71,7 +71,7 @@ object FAcerca: TFAcerca
             TextSettings.Font.Size = 18.000000000000000000
             TextSettings.Font.StyleExt = {00070000000000000004000000}
             TextSettings.HorzAlign = Center
-            Text = 'v1.0'
+            Text = 'v1.5'
             TabOrder = 0
           end
         end

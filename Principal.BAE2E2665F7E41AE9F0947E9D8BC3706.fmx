@@ -76,13 +76,13 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
             Position.X = 397.000000000000000000
           end
         end
-        inherited Layout2: TLayout
+        inherited LayRumbo: TLayout
           Size.Width = 480.000000000000000000
           inherited Label6: TLabel
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
           inherited LRumbo: TLabel
-            Size.Width = 404.000000000000000000
+            Size.Width = 354.000000000000000000
           end
         end
       end

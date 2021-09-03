@@ -48,7 +48,7 @@ inherited FPrinc_Windows: TFPrinc_Windows
             Size.Height = 19.000000000000000000
           end
         end
-        inherited Layout2: TLayout
+        inherited LayRumbo: TLayout
           inherited Label6: TLabel
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end

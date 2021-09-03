@@ -50,9 +50,10 @@ type
     ELon: TEdit;
     ENorte: TEdit;
     EEste: TEdit;
-    Layout2: TLayout;
+    LayRumbo: TLayout;
     Label6: TLabel;
     LRumbo: TLabel;
+    ImgFlecha: TImage;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -175,8 +176,12 @@ end;
 procedure TFPrinc.LocSensorHeadingChanged(Sender: TObject;
   const AHeading: THeading);
 begin
-  LRumbo.Text:=FormatFloat('#0.#',AHeading.Azimuth)+'º '+
-               Orientacion(AHeading.Azimuth);
+  if not IsNaN(AHeading.Azimuth) then
+  begin
+    LRumbo.Text:=FormatFloat('#0.#',AHeading.Azimuth)+'º '+
+                 Orientacion(AHeading.Azimuth);
+    ImgFlecha.RotationAngle:=AHeading.Azimuth;
+  end;
 end;
 
 procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,

@@ -127,10 +127,15 @@ end;
 
 procedure TFPrinc.AbrirVentana(const aFormClass: TComponentClass);
 begin
-  if Assigned(FActiveForm) then FreeAndNil(FActiveForm);
-  Application.CreateForm(aFormClass,FActiveForm);
-  FActiveForm.Show;
-  //FreeAndNil(FActiveForm);
+  //if Assigned(FActiveForm) then FreeAndNil(FActiveForm);
+  try
+    Application.CreateForm(aFormClass,FActiveForm);
+    FActiveForm.Show;
+  finally
+    //FreeAndNil(FActiveForm);
+    FActiveForm.Free;
+  end;
+
 end;
 
 procedure TFPrinc.BBuscarClick(Sender: TObject);
@@ -211,8 +216,8 @@ end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
 begin
-  //AbrirVentana(TFAcerca);
-  FAcerca.Show;
+  AbrirVentana(TFAcerca);
+  //FAcerca.Show;
 end;
 
 procedure TFPrinc.SBSalirClick(Sender: TObject);

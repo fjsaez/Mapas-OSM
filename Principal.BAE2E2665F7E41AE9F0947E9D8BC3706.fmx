@@ -84,6 +84,9 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
           inherited LRumbo: TLabel
             Size.Width = 354.000000000000000000
           end
+          inherited ImgFlecha: TImage
+            Position.X = 430.000000000000000000
+          end
         end
       end
     end

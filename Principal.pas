@@ -211,7 +211,8 @@ end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
 begin
-  AbrirVentana(TFAcerca);
+  //AbrirVentana(TFAcerca);
+  FAcerca.Show;
 end;
 
 procedure TFPrinc.SBSalirClick(Sender: TObject);

@@ -29,5 +29,6 @@ begin
   SharedActivity.getWindow.addFlags(TJWindowManager_LayoutParams.JavaClass.FLAG_KEEP_SCREEN_ON);
   Application.FormFactor.Orientations := [TFormOrientation.Portrait, TFormOrientation.InvertedPortrait, TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
   Application.CreateForm(TFPrinc, FPrinc);
+  Application.CreateForm(TFAcerca, FAcerca);
   Application.Run;
 end.

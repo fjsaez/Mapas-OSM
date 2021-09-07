@@ -324,17 +324,17 @@ object FPrinc: TFPrinc
             Margins.Left = 8.000000000000000000
             Margins.Right = 8.000000000000000000
             Position.X = 8.000000000000000000
-            Size.Width = 60.000000000000000000
+            Size.Width = 85.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.Size = 14.000000000000000000
             TextSettings.Font.StyleExt = {00070000000000000004000000}
-            Text = 'Rumbo:'
+            Text = 'Orientaci'#243'n:'
             TabOrder = 0
           end
           object LRumbo: TLabel
             Align = Client
-            Size.Width = 329.000000000000000000
+            Size.Width = 304.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1

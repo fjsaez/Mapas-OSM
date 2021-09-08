@@ -65,36 +65,6 @@ object FPrinc: TFPrinc
         Size.PlatformDefault = False
         URL = 'https://www.openstreetmap.org/#map=6/6.447/-66.579'
         OnDidFinishLoad = WebBrowserDidFinishLoad
-        object Layout1: TLayout
-          Align = Client
-          Size.Width = 455.000000000000000000
-          Size.Height = 443.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          object Circle1: TCircle
-            Align = Center
-            Fill.Color = claRed
-            Size.Width = 11.000000000000000000
-            Size.Height = 11.000000000000000000
-            Size.PlatformDefault = False
-          end
-          object Line1: TLine
-            Align = Center
-            LineType = Diagonal
-            RotationAngle = 135.000000000000000000
-            Size.Width = 30.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-          end
-          object Line2: TLine
-            Align = Center
-            LineType = Diagonal
-            RotationAngle = 45.000000000000000000
-            Size.Width = 30.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-          end
-        end
       end
     end
     object LayPanel: TLayout

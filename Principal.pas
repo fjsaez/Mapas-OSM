@@ -43,10 +43,6 @@ type
     SwGPS: TSwitch;
     Label5: TLabel;
     FloatAnimation1: TFloatAnimation;
-    Circle1: TCircle;
-    Layout1: TLayout;
-    Line1: TLine;
-    Line2: TLine;
     ELon: TEdit;
     ENorte: TEdit;
     EEste: TEdit;

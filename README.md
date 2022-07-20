@@ -2,7 +2,7 @@
 
 ---
 ## Descripción
-App android que muestra un mapa de OSM según la ubicación del GPS del móvil.
+App Android que muestra un mapa de OSM según la ubicación del GPS del móvil.
 
 ## Lenguaje/framework
 
@@ -26,3 +26,17 @@ GitHub: **github.com/fjsaez**
 Calabozo (Venezuela), septiembre de 2019.
 
 ---
+
+## Imágenes de la aplicación
+
+### Icono
+
+![Calculadora de Resistencias](Imagen/mapa_osm_icono.png)
+
+### Pantalla principal
+
+![Pantalla principal](Imagen/pant_ppal.png)
+
+### Pantalla acerca
+
+![Pantalla principal](Imagen/pant_acerca.png)

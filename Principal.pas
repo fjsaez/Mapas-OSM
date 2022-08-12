@@ -9,8 +9,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Maps,
   FMX.WebBrowser, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, DubbiUtiles,
-  FMX.Layouts, FMX.Objects, System.Sensors, System.Sensors.Components,
-  System.Math, FMX.Ani, UTM_WGS84;
+  FMX.Layouts, FMX.Objects, FMX.Ani, System.Sensors, System.Sensors.Components,
+  System.Math, UTM_WGS84;
 
 type
   TPosicion = record
@@ -254,3 +254,11 @@ begin
 end;
 
 end.
+
+{
+https://www.openstreetmap.org/export/embed.html?bbox=
+        -67.39762,8.93701,-67.39447,8.93433&layer=mapnik
+        se toma el punto medio de estas dos coordenadas y ese será el centro.
+        el zoom viene determinado por el mismo punto medio:
+        -67.396045,8.93567
+}

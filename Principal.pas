@@ -8,11 +8,18 @@ uses
   {$ENDIF}
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Maps,
-  FMX.WebBrowser, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, DubbiUtiles,
-  FMX.Layouts, FMX.Objects, FMX.Ani, System.Sensors, System.Sensors.Components,
-  System.Math, UTM_WGS84;
+  FMX.WebBrowser, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, FMX.Layouts,
+  FMX.Objects, FMX.Ani, System.Sensors, System.Sensors.Components, System.Math,
+  UTM_WGS84;
 
 type
+  TUbicacion = record
+    Lat,Lon,
+    Este,Norte,
+    URLFull,
+    Zoom: string;
+  end;
+
   TPosicion = record
     X,Y: Single;
     CG: TLocationCoord2D;
@@ -72,9 +79,12 @@ type
     { Public declarations }
   end;
 
+const
+  MapURL='https://www.openstreetmap.org/';
+
 var
   FPrinc: TFPrinc;
-  Ubication: TUbication;
+  Ubication: TUbicacion;
   ZoomChanged: boolean;
   FActiveForm: TForm;
 
@@ -85,6 +95,51 @@ implementation
 {$R *.BAE2E2665F7E41AE9F0947E9D8BC3706.fmx ANDROID}
 
 uses AcercaFrm;
+
+procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
+var
+  I,Pos: integer;
+begin
+  Ubic.Zoom:='';
+  Ubic.Lat:='';
+  Ubic.Lon:='';
+  Ubic.URLFull:=sURL;
+  if sURL<>MapURL then
+  begin
+    //desgranar aquí partiendo de la cadena "#map="
+    Pos:=Length(MapURL+'#map=')+1;
+    for I:=1 to 2 do
+    begin
+      while Copy(sURL,Pos,1)<>'/' do
+      begin
+        if I=1 then Ubic.Zoom:=Ubic.Zoom+Copy(sURL,Pos,1)  //el zoom
+               else Ubic.Lat:=Ubic.Lat+Copy(sURL,Pos,1);   //la latitud
+        Inc(Pos);
+      end;
+      Pos:=Pos+1;
+    end;
+    //se obtiene la longitud:
+    while Pos<=Length(sURL) do
+    begin
+      Ubic.Lon:=Ubic.Lon+Copy(sURL,Pos,1);
+      Inc(Pos);
+    end;
+  end;
+end;
+
+function CaractExiste(Strng: string; Charact: char): boolean;
+var
+  I: byte;
+  Existe: boolean;
+begin
+  Existe:=false;
+  for I:=1 to Length(Strng) do
+  begin
+    Existe:=Strng[I]=Charact;
+    if Existe then Break;
+  end;
+  Result:=Existe;
+end;
 
 procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
 var
@@ -152,7 +207,7 @@ end;
 procedure TFPrinc.ELatKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
   Shift: TShiftState);
 begin
-  if (KeyChar='.') and CharactExists(TEdit(Sender).Text,'.') then KeyChar:=#0;
+  if (KeyChar='.') and CaractExiste(TEdit(Sender).Text,'.') then KeyChar:=#0;
 end;
 
 procedure TFPrinc.FormCreate(Sender: TObject);

@@ -267,8 +267,13 @@ end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
 begin
-  AbrirVentana(TFAcerca);
-  //FAcerca.Show;
+  //AbrirVentana(TFAcerca);
+  try
+    Application.CreateForm(TFAcerca,FActiveForm);
+    FActiveForm.Show;
+  finally
+    FreeAndNil(FActiveForm);
+  end;
 end;
 
 procedure TFPrinc.SBSalirClick(Sender: TObject);

@@ -4,8 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, Acerca,
-  FMX.StdCtrls, FMX.Objects, FMX.Controls.Presentation, FMX.Layouts;
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Objects, FMX.Controls.Presentation, FMX.Layouts;
 
 type
   TFAcerca = class(TForm)

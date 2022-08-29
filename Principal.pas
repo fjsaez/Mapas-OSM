@@ -72,7 +72,6 @@ type
     procedure LocSensorHeadingChanged(Sender: TObject;
       const AHeading: THeading);
   private
-    { Private declarations }
     procedure AbrirVentana(const aFormClass: TComponentClass);
   public
     { Public declarations }

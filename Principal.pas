@@ -1,4 +1,4 @@
-unit Principal;
+ï»¿unit Principal;
 
 interface
 
@@ -104,7 +104,7 @@ begin
   Ubic.URLFull:=sURL;
   if sURL<>MapURL then
   begin
-    //desgranar aquí partiendo de la cadena "#map="
+    //desgranar aquÃ­ partiendo de la cadena "#map="
     Pos:=Length(MapURL+'#map=')+1;
     for I:=1 to 2 do
     begin
@@ -209,8 +209,14 @@ begin
 end;
 
 procedure TFPrinc.FormCreate(Sender: TObject);
+var
+  Coord: string;
 begin
   FormatSettings.DecimalSeparator:='.';
+  //esto es una prueba:
+  LocSensor.Active:=SwGPS.IsChecked;
+  Coord:='https://www.openstreetmap.org/export/embed.html?bbox='+
+         '-82,13,-53,1&layer=mapnik';
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
@@ -232,7 +238,7 @@ procedure TFPrinc.LocSensorHeadingChanged(Sender: TObject;
 begin
   if not IsNaN(AHeading.Azimuth) then
   begin
-    LRumbo.Text:=FormatFloat('#0.#',AHeading.Azimuth)+'º '+
+    LRumbo.Text:=FormatFloat('#0.#',AHeading.Azimuth)+'Âº '+
                  Orientacion(AHeading.Azimuth);
     ImgFlecha.RotationAngle:=AHeading.Azimuth;
   end;
@@ -248,7 +254,9 @@ begin
   Ubication.Lon:=FormatFloat('#0.######',NewLocation.Longitude);
   Ubication.Este:=Round(UTM.X).ToString+' E';
   Ubication.Norte:=Round(UTM.Y).ToString+' N';
-  Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
+  //Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
+  Ubication.URLFull:='https://www.openstreetmap.org/export/embed.html?bbox='+
+
   if not IsNaN(NewLocation.Longitude) then
   begin
     ELon.Text:=Ubication.Lon;
@@ -270,7 +278,9 @@ begin
     Application.CreateForm(TFAcerca,FActiveForm);
     FActiveForm.Show;
   finally
-    FreeAndNil(FActiveForm);
+    Screen.PrepareClosePopups(FAcerca);
+    Screen.ClosePopupForms;
+    //FreeAndNil(FActiveForm);
   end;
 end;
 
@@ -302,13 +312,13 @@ begin
   ELon.Text:=Ubication.Lon;
   TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
 
-  P1:=TPointF.Create(0,0);
+  {P1:=TPointF.Create(0,0);
   P2:=TPointF.Create(WebBrowser.Width,WebBrowser.Height);
   WebBrowser.Canvas.BeginScene;
   WebBrowser.Canvas.Stroke.Thickness:=3;
   WebBrowser.Canvas.Stroke.Color:=TAlphaColors.Red;
   WebBrowser.Canvas.DrawLine(P1,P2,100);
-  WebBrowser.Canvas.EndScene;
+  WebBrowser.Canvas.EndScene;}
 end;
 
 end.
@@ -316,7 +326,9 @@ end.
 {
 https://www.openstreetmap.org/export/embed.html?bbox=
         -67.39762,8.93701,-67.39447,8.93433&layer=mapnik
-        se toma el punto medio de estas dos coordenadas y ese será el centro.
+        se toma el punto medio de estas dos coordenadas y ese serÃ¡ el centro.
         el zoom viene determinado por el mismo punto medio:
         -67.396045,8.93567
+https://www.openstreetmap.org/export/embed.html?bbox=-82,13,-53,1&layer=mapnik
+  mÃ¡s ajustado a Venezuela: -73,12.5,-59.7,0.45
 }

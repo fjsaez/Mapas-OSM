@@ -63,7 +63,9 @@ object FPrinc: TFPrinc
         Size.Width = 455.000000000000000000
         Size.Height = 443.000000000000000000
         Size.PlatformDefault = False
-        URL = 'https://www.openstreetmap.org/#map=6/6.447/-66.579'
+        URL = 
+          'https://www.openstreetmap.org/export/embed.html?bbox=-73,0.45,-5' +
+          '9.7,12.5&layer=mapnik'
         OnDidFinishLoad = WebBrowserDidFinishLoad
       end
     end
@@ -99,7 +101,7 @@ object FPrinc: TFPrinc
           end
           object SwGPS: TSwitch
             Align = Left
-            IsChecked = True
+            IsChecked = False
             Position.X = 91.000000000000000000
             Position.Y = 2.000000000000000000
             Size.Width = 44.000000000000000000

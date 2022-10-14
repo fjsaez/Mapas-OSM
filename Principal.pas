@@ -214,9 +214,6 @@ begin
   LZoom.Text:=TrBarZoom.Value.ToString;
   //WebBrowser.URL:=MapURL;
   WebBrowser.StartLoading;
-  {WebBrowser.Canvas.BeginScene;
-  WebBrowser.Canvas.DrawLine(P1,P2,1);
-  WebBrowser.Canvas.EndScene;}
 end;
 
 procedure TFPrinc.LocSensorHeadingChanged(Sender: TObject;

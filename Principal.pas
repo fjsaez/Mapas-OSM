@@ -209,10 +209,10 @@ begin
   //https://www.openstreetmap.org/#map=6/6.447/-66.579
   //esto es una prueba:
   //LocSensor.Active:=SwGPS.IsChecked;
-  //Coord:='https://www.openstreetmap.org/export/embed.html?bbox='+
-    //     '-73,0.45,-59.7,12.5&layer=mapnik';
   LZoom.Text:=TrBarZoom.Value.ToString;
   //WebBrowser.URL:=MapURL;
+  WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
+                  '-73.400,0.400,-59.700,12.600&layer=mapnik';
   WebBrowser.StartLoading;
 end;
 

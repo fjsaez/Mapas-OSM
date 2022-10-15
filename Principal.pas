@@ -301,6 +301,5 @@ end.
 {
 https://www.openstreetmap.org/export/embed.html?bbox=
         -67.39762,8.93701,-67.39447,8.93433&layer=mapnik
-        se toma el punto medio de estas dos coordenadas y ese será el centro.:
   más ajustado a Venezuela:    -73.400,0.400,-59.700,12.600
 }

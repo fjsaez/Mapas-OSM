@@ -256,7 +256,6 @@ end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
 begin
-  //AbrirVentana(TFAcerca);
   try
     Application.CreateForm(TFAcerca,FActiveForm);
     FActiveForm.Show;

@@ -74,6 +74,7 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
           end
           inherited TrBarZoom: TTrackBar
             Size.Width = 480.000000000000000000
+            Size.Height = 19.000000000000000000
           end
           inherited LZoom: TLabel
             Position.X = 397.000000000000000000

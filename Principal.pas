@@ -262,7 +262,6 @@ begin
   finally
     Screen.PrepareClosePopups(FAcerca);
     Screen.ClosePopupForms;
-    //FreeAndNil(FActiveForm);
   end;
 end;
 

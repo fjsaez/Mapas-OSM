@@ -6,7 +6,7 @@
         <MainSource>MisMapas.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Android</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>19</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -197,7 +197,6 @@
         </DCCReference>
         <DCCReference Include="AcercaFrm.pas">
             <Form>FAcerca</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

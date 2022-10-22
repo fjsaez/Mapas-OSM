@@ -198,8 +198,8 @@ end;
 procedure TFPrinc.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator:='.';
-  WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-                  '-73.400,0.400,-59.700,12.600&layer=mapnik';
+  //WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
+    //              '-73.400,0.400,-59.700,12.600&layer=mapnik';
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
@@ -209,10 +209,11 @@ begin
   //https://www.openstreetmap.org/#map=6/6.447/-66.579
   //esto es una prueba:
   //LocSensor.Active:=SwGPS.IsChecked;
-  LZoom.Text:=TrBarZoom.Value.ToString;
+  //LZoom.Text:=TrBarZoom.Value.ToString;
   //WebBrowser.URL:=MapURL;
-  WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-                  '-73.400,0.400,-59.700,12.600&layer=mapnik';
+  //WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
+ // WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
+   //               '-73.400,0.400,-59.700,12.600&layer=mapnik';
   WebBrowser.StartLoading;
 end;
 
@@ -267,7 +268,9 @@ end;
 
 procedure TFPrinc.SBSalirClick(Sender: TObject);
 begin
+  {$IFDEF ANDROID}
   MainActivity.finish;
+  {$ENDIF}
 end;
 
 procedure TFPrinc.SwGPSSwitch(Sender: TObject);
@@ -285,13 +288,11 @@ begin
 end;
 
 procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);
-var
-  P1,P2: TPointF;
 begin
-  ParseURLToCoords(WebBrowser.URL,Ubication);
+  {ParseURLToCoords(WebBrowser.URL,Ubication);
   ELat.Text:=Ubication.Lat;
   ELon.Text:=Ubication.Lon;
-  TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
+  TrBarZoom.Value:=StrToFloat(Ubication.Zoom);}
 end;
 
 end.

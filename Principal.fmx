@@ -63,6 +63,7 @@ object FPrinc: TFPrinc
         Size.Width = 455.000000000000000000
         Size.Height = 443.000000000000000000
         Size.PlatformDefault = False
+        WindowsEngine = IEOnly
         URL = 
           'https://www.openstreetmap.org/export/embed.html?bbox=-73.400,0.4' +
           '00,-59.700,12.600&layer=mapnik'
@@ -542,6 +543,8 @@ object FPrinc: TFPrinc
     end
   end
   object LocSensor: TLocationSensor
+    ActivityType = Other
+    UsageAuthorization = WhenInUse
     OnLocationChanged = LocSensorLocationChanged
     OnHeadingChanged = LocSensorHeadingChanged
     Left = 152

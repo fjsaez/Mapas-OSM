@@ -92,7 +92,8 @@ implementation
 {$R *.Windows.fmx MSWINDOWS}
 {$R *.BAE2E2665F7E41AE9F0947E9D8BC3706.fmx ANDROID}
 
-uses AcercaFrm;
+uses
+  AcercaFrm, System.Permissions, FMX.DialogService;
 
 procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
 var
@@ -274,8 +275,25 @@ begin
 end;
 
 procedure TFPrinc.SwGPSSwitch(Sender: TObject);
+const
+  PermissionAccessFineLocation='android.permission.ACCESS_FINE_LOCATION';
 begin
-  LocSensor.Active:=SwGPS.IsChecked;
+  {$IFDEF ANDROID}
+  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+    procedure(const APermissions: TClassicStringDynArray;
+              const AGrantResults: TClassicPermissionStatusDynArray)
+    begin
+      if (Length(AGrantResults)=1) and (AGrantResults[0]=TPermissionStatus.Granted) then
+        LocSensor.Active:=SwGPS.IsChecked
+      else
+      begin
+        SwGPS.IsChecked:=false;
+        TDialogService.ShowMessage('Permiso de Localización no está permitido');
+      end;
+    end);
+  {$ELSE}
+    LocSensor.Active := SwitchGPS.IsChecked;
+  {$ENDIF}
   if SwGPS.IsChecked then TrBarZoom.Value:=15;
   ELon.ReadOnly:=SwGPS.IsChecked;
   ELat.ReadOnly:=SwGPS.IsChecked;

@@ -198,13 +198,11 @@ end;
 procedure TFPrinc.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator:='.';
-  //WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-    //              '-73.400,0.400,-59.700,12.600&layer=mapnik';
+  WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
+                  '-73.400,0.400,-59.700,12.600&layer=mapnik';
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
-//var
-  //Coord: string;
 begin
   //https://www.openstreetmap.org/#map=6/6.447/-66.579
   //esto es una prueba:

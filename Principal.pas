@@ -89,7 +89,6 @@ var
 implementation
 
 {$R *.fmx}
-{$R *.Windows.fmx MSWINDOWS}
 {$R *.BAE2E2665F7E41AE9F0947E9D8BC3706.fmx ANDROID}
 
 uses

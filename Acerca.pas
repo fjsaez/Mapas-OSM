@@ -5,27 +5,28 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Layouts, FMX.Objects, FMX.Controls.Presentation;
+  FMX.Objects, FMX.Controls.Presentation, FMX.Layouts;
 
 type
-  TFrAcerca = class(TFrame)
+  TFrmAcerca = class(TFrame)
+    RectPrinc: TRectangle;
     Rectangle: TRectangle;
     LayAcerca: TLayout;
     LayNombre: TLayout;
-    LayVersion: TLayout;
-    LayImagen: TLayout;
-    LayAutor: TLayout;
-    Layout5: TLayout;
-    LayLugarFecha: TLayout;
-    Layout7: TLayout;
     Label1: TLabel;
+    LayVersion: TLayout;
     Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
+    LayImagen: TLayout;
     Image1: TImage;
+    LayAutor: TLayout;
+    Label3: TLabel;
+    Layout1: TLayout;
+    LayLugarFecha: TLayout;
+    Label4: TLabel;
+    Layout2: TLayout;
+    BAceptar: TButton;
     LayMensaje: TLayout;
     Label5: TLabel;
-    BBuscar: TButton;
   private
     { Private declarations }
   public

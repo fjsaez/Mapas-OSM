@@ -10,6 +10,49 @@ object FPrinc: TFPrinc
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 3
+  object LayAcerca: TLayout
+    Align = Client
+    Size.Width = 455.000000000000000000
+    Size.Height = 651.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 4
+    inline FrmAcerca1: TFrmAcerca
+      Align = Client
+      Size.Width = 455.000000000000000000
+      Size.Height = 651.000000000000000000
+      Size.PlatformDefault = False
+      inherited RectPrinc: TRectangle
+        inherited LayAcerca: TLayout
+          inherited LayNombre: TLayout
+            inherited Label1: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayVersion: TLayout
+            inherited Label2: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayAutor: TLayout
+            inherited Label3: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayLugarFecha: TLayout
+            inherited Label4: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited Layout2: TLayout
+            inherited BAceptar: TButton
+              OnClick = FrmAcerca1BAceptarClick
+            end
+          end
+        end
+      end
+    end
+  end
   object LayPrinc: TLayout
     Align = Contents
     Size.Width = 455.000000000000000000

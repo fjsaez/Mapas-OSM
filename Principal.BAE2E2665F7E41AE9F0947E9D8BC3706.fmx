@@ -2,7 +2,7 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
   ClientHeight = 914
   ClientWidth = 480
   DesignerMasterStyle = 3
-  inherited LayPrinc: TLayout
+  inherited LayPrinc: TLayout [0]
     Size.Width = 480.000000000000000000
     Size.Height = 914.000000000000000000
     inherited ToolBar1: TToolBar
@@ -90,6 +90,34 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
           end
           inherited ImgFlecha: TImage
             Position.X = 430.000000000000000000
+          end
+        end
+      end
+    end
+  end
+  inherited LayAcerca: TLayout [1]
+    inherited FrmAcerca1: TFrmAcerca
+      inherited RectPrinc: TRectangle
+        inherited LayAcerca: TLayout
+          inherited LayNombre: TLayout
+            inherited Label1: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayVersion: TLayout
+            inherited Label2: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayAutor: TLayout
+            inherited Label3: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayLugarFecha: TLayout
+            inherited Label4: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
           end
         end
       end

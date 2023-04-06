@@ -9,7 +9,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.WebBrowser,
   FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, FMX.Layouts, FMX.Objects,
-  FMX.Ani, System.Sensors, System.Sensors.Components, System.Math, UTM_WGS84;
+  FMX.Ani, System.Sensors, System.Sensors.Components, System.Math, UTM_WGS84,
+  Acerca;
 
 type
   TUbicacion = record
@@ -56,6 +57,8 @@ type
     Label6: TLabel;
     LRumbo: TLabel;
     ImgFlecha: TImage;
+    LayAcerca: TLayout;
+    FrmAcerca1: TFrmAcerca;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -71,6 +74,7 @@ type
     procedure SwGPSSwitch(Sender: TObject);
     procedure LocSensorHeadingChanged(Sender: TObject;
       const AHeading: THeading);
+    procedure FrmAcerca1BAceptarClick(Sender: TObject);
   private
 
   public
@@ -215,6 +219,12 @@ begin
   WebBrowser.StartLoading;
 end;
 
+procedure TFPrinc.FrmAcerca1BAceptarClick(Sender: TObject);
+begin
+  LayAcerca.Visible:=false;
+  LayPrinc.Visible:=true;
+end;
+
 procedure TFPrinc.LocSensorHeadingChanged(Sender: TObject;
   const AHeading: THeading);
 begin
@@ -255,13 +265,16 @@ end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
 begin
-  try
+  {try
     Application.CreateForm(TFAcerca,FActiveForm);
     FActiveForm.Show;
   finally
     Screen.PrepareClosePopups(FAcerca);
     Screen.ClosePopupForms;
-  end;
+  end;}
+  LayPrinc.Visible:=false;
+  LayAcerca.Visible:=true;
+
 end;
 
 procedure TFPrinc.SBSalirClick(Sender: TObject);

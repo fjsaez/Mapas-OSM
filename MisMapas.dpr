@@ -19,10 +19,10 @@ uses
   Androidapi.JNI.App,
   Androidapi.JNI.GraphicsContentViewText,
   Androidapi.Helpers,
-  {$ENDIF}
+  {$ENDIF }
   FMX.Forms,
   Principal in 'Principal.pas' {FPrinc},
-  AcercaFrm in 'AcercaFrm.pas' {FAcerca};
+  Acerca in 'Acerca.pas' {FrmAcerca: TFrame};
 
 {$R *.res}
 

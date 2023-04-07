@@ -265,16 +265,8 @@ end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
 begin
-  {try
-    Application.CreateForm(TFAcerca,FActiveForm);
-    FActiveForm.Show;
-  finally
-    Screen.PrepareClosePopups(FAcerca);
-    Screen.ClosePopupForms;
-  end;}
   LayPrinc.Visible:=false;
   LayAcerca.Visible:=true;
-
 end;
 
 procedure TFPrinc.SBSalirClick(Sender: TObject);

@@ -1,0 +1,103 @@
+inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited LayAcerca: TLayout
+    inherited FrmAcerca1: TFrmAcerca
+      inherited RectPrinc: TRectangle
+        inherited LayAcerca: TLayout
+          inherited LayNombre: TLayout
+            inherited Label1: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayVersion: TLayout
+            inherited Label2: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayAutor: TLayout
+            inherited Label3: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          inherited LayLugarFecha: TLayout
+            inherited Label4: TLabel
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited LayPrinc: TLayout
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Width = 450.000000000000000000
+      inherited Label4: TLabel
+        Size.Width = 354.000000000000000000
+      end
+      inherited SBSalir: TSpeedButton
+        Position.X = 402.000000000000000000
+      end
+    end
+    inherited LayMapa: TLayout
+      Size.Width = 450.000000000000000000
+      Size.Height = 487.000000000000000000
+      inherited WebBrowser: TWebBrowser
+        Size.Width = 450.000000000000000000
+        Size.Height = 487.000000000000000000
+      end
+    end
+    inherited LayPanel: TLayout
+      Position.Y = 535.000000000000000000
+      Size.Width = 450.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Width = 450.000000000000000000
+        inherited LayBuscar: TLayout
+          Size.Width = 450.000000000000000000
+          inherited Label5: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        inherited LayLatitud: TLayout
+          Size.Width = 450.000000000000000000
+          inherited Label1: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited ELat: TEdit
+            Size.Width = 254.000000000000000000
+          end
+        end
+        inherited LayLongitud: TLayout
+          Size.Width = 450.000000000000000000
+          inherited Label2: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited ENorte: TEdit
+            Size.Width = 254.000000000000000000
+          end
+        end
+        inherited LayZoom: TLayout
+          Size.Width = 450.000000000000000000
+          inherited Label3: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        inherited LayRumbo: TLayout
+          Size.Width = 450.000000000000000000
+          inherited Label6: TLabel
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited LRumbo: TLabel
+            Size.Width = 299.000000000000000000
+          end
+          inherited ImgFlecha: TImage
+            Position.X = 400.000000000000000000
+          end
+        end
+      end
+    end
+  end
+end

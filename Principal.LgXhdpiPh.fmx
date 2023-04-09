@@ -57,6 +57,9 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
         Size.Width = 450.000000000000000000
         inherited LayBuscar: TLayout
           Size.Width = 450.000000000000000000
+          inherited BBuscar: TButton
+            Position.X = 300.000000000000000000
+          end
           inherited Label5: TLabel
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
@@ -83,6 +86,9 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           Size.Width = 450.000000000000000000
           inherited Label3: TLabel
             TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+          inherited LZoom: TLabel
+            Position.X = 367.000000000000000000
           end
         end
         inherited LayRumbo: TLayout

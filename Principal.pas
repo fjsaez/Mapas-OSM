@@ -13,6 +13,14 @@ uses
   Acerca;
 
 type
+  TMapPoint = record
+    Lat,Lon: Double;
+  end;
+
+  TTile = record
+    Zoom,X,Y: Integer;
+  end;
+
   TUbicacion = record
     Lat,Lon,
     Este,Norte,
@@ -97,7 +105,7 @@ implementation
 {$R *.LgXhdpiPh.fmx ANDROID}
 
 uses
-  AcercaFrm, System.Permissions, FMX.DialogService;
+  System.Permissions, FMX.DialogService;
 
 procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
 var
@@ -179,6 +187,23 @@ begin
   end;
 end;
 
+function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
+var
+  N: DWord;
+  RLat: Extended;
+  FX, FY: Extended;
+begin
+  N := 1 shl Zoom;
+  FX := (MP.Longitude + 180) * N / 360;
+  RLat := DegToRad(MP.Latitude);
+  FY := (1 - ln(tan(RLat) + sec(RLat)) / Pi) * N / 2;
+  Result.Zoom:=Zoom;
+  Result.X := Trunc(FX);
+  Result.Y := Trunc(FY);
+end;
+
+/// Eventos ///
+
 procedure TFPrinc.BBuscarClick(Sender: TObject);
 begin
   Ubication.Lat:=ELat.Text;
@@ -209,7 +234,6 @@ end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
 begin
-  //https://www.openstreetmap.org/#map=6/6.447/-66.579
   //esto es una prueba:
   //LocSensor.Active:=SwGPS.IsChecked;
   //LZoom.Text:=TrBarZoom.Value.ToString;
@@ -241,6 +265,7 @@ procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,
   NewLocation: TLocationCoord2D);
 var
   UTM: TPosicion;
+  Posc: TTile;
 begin
   CargarCoordenadas(NewLocation,UTM);
   Ubication.Lat:=FormatFloat('#0.######',NewLocation.Latitude);
@@ -249,6 +274,9 @@ begin
   Ubication.Norte:=Round(UTM.Y).ToString+' N';
   //Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
   //Ubication.URLFull:='https://www.openstreetmap.org/export/embed.html?bbox='+
+  Posc:=GetTileNumber(NewLocation,Ubication.Zoom.ToInteger);
+  Ubication.URLFull:='https://tile.openstreetmap.org/'+Ubication.Zoom+
+                     '/'+Posc.Y.ToString+'/'+Posc.X.ToString+'.png';
 
   if not IsNaN(NewLocation.Longitude) then
   begin
@@ -260,8 +288,9 @@ begin
     ELat.Text:=Ubication.Lat;
     ENorte.Text:=Ubication.Norte;
   end;
-  //WebBrowser.URL:=Ubication.URLFull;
-  //WebBrowser.StartLoading;
+  WebBrowser.URL:=Ubication.URLFull;
+  WebBrowser.StartLoading;
+  showmessage(WebBrowser.URL);
 end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
@@ -297,7 +326,7 @@ begin
   {$ELSE}
     LocSensor.Active := SwitchGPS.IsChecked;
   {$ENDIF}
-  if SwGPS.IsChecked then TrBarZoom.Value:=15;
+  //if SwGPS.IsChecked then TrBarZoom.Value:=9;
   ELon.ReadOnly:=SwGPS.IsChecked;
   ELat.ReadOnly:=SwGPS.IsChecked;
 end;

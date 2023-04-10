@@ -22,7 +22,8 @@ uses
   {$ENDIF }
   FMX.Forms,
   Principal in 'Principal.pas' {FPrinc},
-  Acerca in 'Acerca.pas' {FrmAcerca: TFrame};
+  Acerca in 'Acerca.pas' {FrmAcerca: TFrame},
+  UtilMapas in 'UtilMapas.pas';
 
 {$R *.res}
 

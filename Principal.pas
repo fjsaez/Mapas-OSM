@@ -9,11 +9,11 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.WebBrowser,
   FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, FMX.Layouts, FMX.Objects,
-  FMX.Ani, System.Sensors, System.Sensors.Components, System.Math, UTM_WGS84,
-  Acerca;
+  FMX.Ani, System.Sensors, System.Sensors.Components, UTM_WGS84, System.Math,
+  Acerca, UtilMapas;
 
 type
-  TMapPoint = record
+  {TMapPoint = record
     Lat,Lon: Double;
   end;
 
@@ -31,7 +31,7 @@ type
   TPosicion = record
     X,Y: Single;
     CG: TLocationCoord2D;
-  end;
+  end;  }
 
   TFPrinc = class(TForm)
     WebBrowser: TWebBrowser;
@@ -165,43 +165,6 @@ begin
   CoordPos.Y:=UTM.Y;
 end;
 
-function Orientacion(Grados: double): string;
-begin
-  case Round(Grados) of
-    0..10,350..360: Result:='N';  //norte
-    11..34: Result:='N - NE';     //norte-noreste
-    35..54: Result:='NE';         //noreste
-    55..79: Result:='E - NE';     //este-noreste
-    80..100: Result:='E';         //este
-    101..124: Result:='E - SE';   //este-sureste
-    125..144: Result:='SE';       //sureste
-    145..169: Result:='S - SE';   //sur-sureste
-    170..190: Result:='S';        //sur
-    191..214: Result:='S - SW';   //sur-suroeste
-    215..234: Result:='SW';       //suroeste
-    235..259: Result:='W - SW';   //oeste-suroeste
-    260..280: Result:='W';        //oeste
-    281..304: Result:='W - NW';   //oeste-noroeste
-    305..324: Result:='NW';       //noroeste
-    325..349: Result:='N - NW';   //norte-noroeste
-  end;
-end;
-
-function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
-var
-  N: DWord;
-  RLat: Extended;
-  FX, FY: Extended;
-begin
-  N := 1 shl Zoom;
-  FX := (MP.Longitude + 180) * N / 360;
-  RLat := DegToRad(MP.Latitude);
-  FY := (1 - ln(tan(RLat) + sec(RLat)) / Pi) * N / 2;
-  Result.Zoom:=Zoom;
-  Result.X := Trunc(FX);
-  Result.Y := Trunc(FY);
-end;
-
 /// Eventos ///
 
 procedure TFPrinc.BBuscarClick(Sender: TObject);
@@ -276,8 +239,7 @@ begin
   //Ubication.URLFull:='https://www.openstreetmap.org/export/embed.html?bbox='+
   Posc:=GetTileNumber(NewLocation,Ubication.Zoom.ToInteger);
   Ubication.URLFull:='https://tile.openstreetmap.org/'+Ubication.Zoom+
-                     '/'+Posc.Y.ToString+'/'+Posc.X.ToString+'.png';
-
+                     '/'+Posc.X.ToString+'/'+Posc.Y.ToString+'.png';
   if not IsNaN(NewLocation.Longitude) then
   begin
     ELon.Text:=Ubication.Lon;
@@ -290,7 +252,7 @@ begin
   end;
   WebBrowser.URL:=Ubication.URLFull;
   WebBrowser.StartLoading;
-  showmessage(WebBrowser.URL);
+  showmessage(Ubication.URLFull);
 end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
@@ -326,9 +288,9 @@ begin
   {$ELSE}
     LocSensor.Active := SwitchGPS.IsChecked;
   {$ENDIF}
-  //if SwGPS.IsChecked then TrBarZoom.Value:=9;
   ELon.ReadOnly:=SwGPS.IsChecked;
   ELat.ReadOnly:=SwGPS.IsChecked;
+  Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
 end;
 
 procedure TFPrinc.TrBarZoomChange(Sender: TObject);

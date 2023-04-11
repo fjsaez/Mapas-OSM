@@ -13,26 +13,6 @@ uses
   Acerca, UtilMapas;
 
 type
-  {TMapPoint = record
-    Lat,Lon: Double;
-  end;
-
-  TTile = record
-    Zoom,X,Y: Integer;
-  end;
-
-  TUbicacion = record
-    Lat,Lon,
-    Este,Norte,
-    URLFull,
-    Zoom: string;
-  end;
-
-  TPosicion = record
-    X,Y: Single;
-    CG: TLocationCoord2D;
-  end;  }
-
   TFPrinc = class(TForm)
     WebBrowser: TWebBrowser;
     ELat: TEdit;

@@ -182,8 +182,6 @@ begin
   //LZoom.Text:=TrBarZoom.Value.ToString;
   //WebBrowser.URL:=MapURL;
   //WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
- // WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-   //               '-73.400,0.400,-59.700,12.600&layer=mapnik';
   WebBrowser.StartLoading;
 end;
 

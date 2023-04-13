@@ -131,19 +131,6 @@ begin
   Result:=Existe;
 end;
 
-procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
-var
-  LatLon: TRecLatLon;
-  UTM: TRecUTM;
-begin
-  LatLon.Lat:=CoordGPS.Latitude;
-  LatLon.Lon:=CoordGPS.Longitude;
-  LatLon_To_UTM(LatLon,UTM);
-  CoordPos.CG:=CoordGPS;
-  CoordPos.X:=UTM.X;
-  CoordPos.Y:=UTM.Y;
-end;
-
 /// Eventos ///
 
 procedure TFPrinc.BBuscarClick(Sender: TObject);

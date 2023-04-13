@@ -3,7 +3,7 @@ unit UtilMapas;
 interface
 
 uses
-  System.Math, System.Sensors, System.Types;
+  System.Math, System.Sensors, System.Types, UTM_WGS84;
 
 type
   TMapPoint = record
@@ -85,6 +85,19 @@ begin
   N:=1 shl T.Zoom;
   Result.Lat:=RadToDeg(ArcTan(Sinh(Pi*(1-2*(T.Y+T.FractY)/N))));
   Result.Lon:=(T.X+T.FractX)/N*360-180;
+end;
+
+procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
+var
+  LatLon: TRecLatLon;
+  UTM: TRecUTM;
+begin
+  LatLon.Lat:=CoordGPS.Latitude;
+  LatLon.Lon:=CoordGPS.Longitude;
+  LatLon_To_UTM(LatLon,UTM);
+  CoordPos.CG:=CoordGPS;
+  CoordPos.X:=UTM.X;
+  CoordPos.Y:=UTM.Y;
 end;
 
 end.

@@ -60,6 +60,9 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           inherited BBuscar: TButton
             Position.X = 300.000000000000000000
           end
+          inherited SwGPS: TSwitch
+            Size.Height = 30.000000000000000000
+          end
           inherited Label5: TLabel
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
@@ -71,6 +74,10 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           end
           inherited ELat: TEdit
             Size.Width = 254.000000000000000000
+            Size.Height = 30.000000000000000000
+          end
+          inherited ELon: TEdit
+            Size.Height = 30.000000000000000000
           end
         end
         inherited LayLongitud: TLayout
@@ -80,6 +87,10 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
           end
           inherited ENorte: TEdit
             Size.Width = 254.000000000000000000
+            Size.Height = 30.000000000000000000
+          end
+          inherited EEste: TEdit
+            Size.Height = 30.000000000000000000
           end
         end
         inherited LayZoom: TLayout

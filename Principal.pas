@@ -75,7 +75,6 @@ const
 var
   FPrinc: TFPrinc;
   Ubication: TUbicacion;
-  ZoomChanged: boolean;
   FActiveForm: TForm;
 
 implementation
@@ -179,7 +178,7 @@ procedure TFPrinc.FormShow(Sender: TObject);
 begin
   //esto es una prueba:
   //LocSensor.Active:=SwGPS.IsChecked;
-  //LZoom.Text:=TrBarZoom.Value.ToString;
+  LZoom.Text:=TrBarZoom.Value.ToString;
   //WebBrowser.URL:=MapURL;
   //WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
   WebBrowser.StartLoading;

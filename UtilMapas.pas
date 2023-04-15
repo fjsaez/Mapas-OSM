@@ -27,12 +27,27 @@ type
     CG: TLocationCoord2D;
   end;
 
+  function CaractExiste(Strng: string; Charact: char): boolean;
   function Orientacion(Grados: double): string;
   function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
   function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
   function GetLatLon(T: TTile): TMapPoint;
 
 implementation
+
+function CaractExiste(Strng: string; Charact: char): boolean;
+var
+  I: byte;
+  Existe: boolean;
+begin
+  Existe:=false;
+  for I:=1 to Length(Strng) do
+  begin
+    Existe:=Strng[I]=Charact;
+    if Existe then Break;
+  end;
+  Result:=Existe;
+end;
 
 function Orientacion(Grados: double): string;
 begin

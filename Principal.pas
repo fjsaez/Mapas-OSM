@@ -117,20 +117,6 @@ begin
   end;
 end;
 
-function CaractExiste(Strng: string; Charact: char): boolean;
-var
-  I: byte;
-  Existe: boolean;
-begin
-  Existe:=false;
-  for I:=1 to Length(Strng) do
-  begin
-    Existe:=Strng[I]=Charact;
-    if Existe then Break;
-  end;
-  Result:=Existe;
-end;
-
 /// Eventos ///
 
 procedure TFPrinc.BBuscarClick(Sender: TObject);

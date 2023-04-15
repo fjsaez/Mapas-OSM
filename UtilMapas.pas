@@ -27,11 +27,16 @@ type
     CG: TLocationCoord2D;
   end;
 
+  const
+    MapURL='https://www.openstreetmap.org/';
+
   function CaractExiste(Strng: string; Charact: char): boolean;
   function Orientacion(Grados: double): string;
   function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
   function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
   function GetLatLon(T: TTile): TMapPoint;
+  procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
+  procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
 
 implementation
 
@@ -113,6 +118,37 @@ begin
   CoordPos.CG:=CoordGPS;
   CoordPos.X:=UTM.X;
   CoordPos.Y:=UTM.Y;
+end;
+
+procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
+var
+  I,Pos: integer;
+begin
+  Ubic.Zoom:='';
+  Ubic.Lat:='';
+  Ubic.Lon:='';
+  Ubic.URLFull:=sURL;
+  if sURL<>MapURL then
+  begin
+    //desgranar aquí partiendo de la cadena "#map="
+    Pos:=Length(MapURL+'#map=')+1;
+    for I:=1 to 2 do
+    begin
+      while Copy(sURL,Pos,1)<>'/' do
+      begin
+        if I=1 then Ubic.Zoom:=Ubic.Zoom+Copy(sURL,Pos,1)  //el zoom
+               else Ubic.Lat:=Ubic.Lat+Copy(sURL,Pos,1);   //la latitud
+        Inc(Pos);
+      end;
+      Pos:=Pos+1;
+    end;
+    //se obtiene la longitud:
+    while Pos<=Length(sURL) do
+    begin
+      Ubic.Lon:=Ubic.Lon+Copy(sURL,Pos,1);
+      Inc(Pos);
+    end;
+  end;
 end;
 
 end.

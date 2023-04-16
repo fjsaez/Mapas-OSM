@@ -117,7 +117,7 @@ procedure TFPrinc.FormShow(Sender: TObject);
 begin
   //esto es una prueba:
   //LocSensor.Active:=SwGPS.IsChecked;
-  LZoom.Text:=TrBarZoom.Value.ToString;
+  LZoom.Text:=Trunc(TrBarZoom.Value).ToString;
   //WebBrowser.URL:=MapURL;
   //WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
   WebBrowser.StartLoading;
@@ -145,17 +145,20 @@ procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,
 var
   UTM: TPosicion;
   Posc: TTile;
+  Coords: TCoords;
 begin
   CargarCoordenadas(NewLocation,UTM);
   Ubication.Lat:=FormatFloat('#0.######',NewLocation.Latitude);
   Ubication.Lon:=FormatFloat('#0.######',NewLocation.Longitude);
   Ubication.Este:=Round(UTM.X).ToString+' E';
   Ubication.Norte:=Round(UTM.Y).ToString+' N';
-  //Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
-  //Ubication.URLFull:='https://www.openstreetmap.org/export/embed.html?bbox='+
-  Posc:=GetTileNumber(NewLocation,Ubication.Zoom.ToInteger);
-  Ubication.URLFull:='https://tile.openstreetmap.org/'+Ubication.Zoom+
-                     '/'+Posc.X.ToString+'/'+Posc.Y.ToString+'.png';
+  Coords:=ObtenerCoordenadas(NewLocation,WebBrowser.Width,WebBrowser.Height,
+                             Round(TrBarZoom.Value));
+  Ubication.URLFull:=MapURL+FormatFloat('#0.######',Coords.TopLeft.Lon)+','+
+    FormatFloat('#0.######',Coords.TopLeft.Lat)+','+
+    FormatFloat('#0.######',Coords.BottomRight.Lon)+','+
+    FormatFloat('#0.######',Coords.BottomRight.Lat)+'&layer=mapnik';
+
   if not IsNaN(NewLocation.Longitude) then
   begin
     ELon.Text:=Ubication.Lon;
@@ -167,8 +170,8 @@ begin
     ENorte.Text:=Ubication.Norte;
   end;
   WebBrowser.URL:=Ubication.URLFull;
+  //showmessage(Ubication.URLFull+' --- Zoom: '+Round(TrBarZoom.Value).ToString);
   WebBrowser.StartLoading;
-  showmessage(Ubication.URLFull);
 end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
@@ -228,4 +231,7 @@ end.
 { más ajustado a Venezuela:
 https://www.openstreetmap.org/export/embed.html?bbox=
         -73.400,0.400,-59.700,12.600&layer=mapnik
+
+Ubication.URLFull:='https://tile.openstreetmap.org/'+Ubication.Zoom+
+                     '/'+Posc.X.ToString+'/'+Posc.Y.ToString+'.png';
 }

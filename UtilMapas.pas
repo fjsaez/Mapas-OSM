@@ -10,6 +10,10 @@ type
     Lat,Lon: Double;
   end;
 
+  TCoords = record
+    TopLeft,BottomRight: TMapPoint;
+  end;
+
   TTile = record
     Zoom,X,Y: Integer;
     FractX,FractY: Double;
@@ -28,15 +32,17 @@ type
   end;
 
   const
-    MapURL='https://www.openstreetmap.org/';
+    MapURL='https://www.openstreetmap.org/export/embed.html?bbox=';
 
   function CaractExiste(Strng: string; Charact: char): boolean;
   function Orientacion(Grados: double): string;
   function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
   function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
-  function GetLatLon(T: TTile): TMapPoint;
+ // function GetLatLon(T: TTile): TMapPoint;
   procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
   procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
+  function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
+                              Zoom: integer): TCoords;
 
 implementation
 
@@ -92,20 +98,20 @@ begin
   FX := (MP.Longitude + 180) * N / 360;
   RLat := DegToRad(MP.Latitude);
   FY := (1 - Ln(Tan(RLat) + Sec(RLat)) / Pi) * N / 2;
-  //Result := MakeTile(FX, FY, Zoom);
-  Result.Zoom:=Zoom;
+  Result := MakeTile(FX, FY, Zoom);
+  {Result.Zoom:=Zoom;
   Result.X := Trunc(FX);
-  Result.Y := Trunc(FY);
+  Result.Y := Trunc(FY);}
 end;
 
-function GetLatLon(T: TTile): TMapPoint;
+{function GetLatLon(T: TTile): TMapPoint;
 var
   N: DWord;
 begin
   N:=1 shl T.Zoom;
   Result.Lat:=RadToDeg(ArcTan(Sinh(Pi*(1-2*(T.Y+T.FractY)/N))));
   Result.Lon:=(T.X+T.FractX)/N*360-180;
-end;
+end;          }
 
 procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
 var
@@ -149,6 +155,34 @@ begin
       Inc(Pos);
     end;
   end;
+end;
+
+function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
+                            Zoom: integer): TCoords;
+var
+  FX,FY: Double;
+  Tile,TileTL,TileBR: TTile;
+
+  function GetLatLon(T: TTile): TMapPoint;
+  var
+    N: DWord;
+  begin
+    N:=1 shl T.Zoom;
+    Result.Lat:=RadToDeg(ArcTan(Sinh(Pi*(1-2*(T.Y+T.FractY)/N))));
+    Result.Lon:=(T.X+T.FractX)/N*360-180;
+  end;
+
+begin
+  Tile:=GetTileNumber(MPto,Zoom);
+  //se obtienen las coordenadas de ambas esquinas:
+  FX:=Tile.X+Tile.FractX-(Ancho/2/256);
+  FY:=Tile.Y+Tile.FractY-(Alto/2/256);
+  TileTL:=MakeTile(FX,FY,Zoom);
+  Result.TopLeft:=GetLatLon(TileTL);
+  FX:=Tile.X+Tile.FractX+(Ancho/2/256);
+  FY:=Tile.Y+Tile.FractY+(Alto/2/256);
+  TileBR:=MakeTile(FX,FY,Zoom);
+  Result.BottomRight:=GetLatLon(TileBR);
 end;
 
 end.

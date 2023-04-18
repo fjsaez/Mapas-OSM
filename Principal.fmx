@@ -297,7 +297,7 @@ object FPrinc: TFPrinc
           object TrBarZoom: TTrackBar
             Align = Center
             CanParentFocus = True
-            Max = 18.000000000000000000
+            Max = 19.000000000000000000
             Min = 1.000000000000000000
             Orientation = Horizontal
             Size.Width = 175.000000000000000000
@@ -305,7 +305,7 @@ object FPrinc: TFPrinc
             Size.PlatformDefault = False
             TabOrder = 1
             TabStop = False
-            Value = 9.000000000000000000
+            Value = 10.000000000000000000
             OnChange = TrBarZoomChange
             object FloatAnimation1: TFloatAnimation
               Duration = 0.200000002980232200

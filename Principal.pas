@@ -64,7 +64,7 @@ type
       const AHeading: THeading);
     procedure FrmAcerca1BAceptarClick(Sender: TObject);
   private
-
+    procedure MostrarMapa(Loc: TLocationCoord2D);
   public
     { Public declarations }
   end;
@@ -83,16 +83,46 @@ implementation
 uses
   System.Permissions, FMX.DialogService;
 
+procedure TFPrinc.MostrarMapa(Loc: TLocationCoord2D);
+var
+  UTM: TPosicion;
+  Posc: TTile;
+  Coords: TCoords;
+begin
+  CargarCoordenadas(Loc,UTM);
+  Ubication.Lat:=FormatFloat('#0.######',Loc.Latitude);
+  Ubication.Lon:=FormatFloat('#0.######',Loc.Longitude);
+  Ubication.Este:=Round(UTM.X).ToString+' E';
+  Ubication.Norte:=Round(UTM.Y).ToString+' N';
+  Coords:=ObtenerCoordenadas(Loc,WebBrowser.Width,WebBrowser.Height,
+                             Round(TrBarZoom.Value));
+  Ubication.URLFull:=MapURL+FormatFloat('#0.######',Coords.TopLeft.Lon)+','+
+    FormatFloat('#0.######',Coords.TopLeft.Lat)+','+
+    FormatFloat('#0.######',Coords.BottomRight.Lon)+','+
+    FormatFloat('#0.######',Coords.BottomRight.Lat)+'&layer=mapnik';
+  if not IsNaN(Loc.Longitude) then
+  begin
+    ELon.Text:=Ubication.Lon;
+    EEste.Text:=Ubication.Este;
+  end;
+  if not IsNaN(Loc.Latitude) then
+  begin
+    ELat.Text:=Ubication.Lat;
+    ENorte.Text:=Ubication.Norte;
+  end;
+  WebBrowser.URL:=Ubication.URLFull;
+  WebBrowser.StartLoading;
+end;
+
 /// Eventos ///
 
 procedure TFPrinc.BBuscarClick(Sender: TObject);
+var
+  Coord: TLocationCoord2D;
 begin
-  Ubication.Lat:=ELat.Text;
-  Ubication.Lon:=ELon.Text;
-  Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
-  Ubication.URLFull:=MapURL+'#map='+Ubication.Zoom+'/'+Ubication.Lat+'/'+Ubication.Lon;
-  WebBrowser.URL:=Ubication.URLFull;
-  WebBrowser.StartLoading;
+  Coord.Latitude:=ELat.Text.ToDouble;
+  Coord.Longitude:=ELon.Text.ToDouble;
+  MostrarMapa(Coord);
 end;
 
 procedure TFPrinc.ELatChange(Sender: TObject);
@@ -111,15 +141,14 @@ begin
   FormatSettings.DecimalSeparator:='.';
   WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
                   '-73.400,0.400,-59.700,12.600&layer=mapnik';
+  LZoom.Text:=Trunc(TrBarZoom.Value).ToString;
+  //esto es temporal:
+  ELon.Text:='-67.4181';
+  ELat.Text:='8.9047';
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
 begin
-  //esto es una prueba:
-  //LocSensor.Active:=SwGPS.IsChecked;
-  LZoom.Text:=Trunc(TrBarZoom.Value).ToString;
-  //WebBrowser.URL:=MapURL;
-  //WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
   WebBrowser.StartLoading;
 end;
 
@@ -142,36 +171,8 @@ end;
 
 procedure TFPrinc.LocSensorLocationChanged(Sender: TObject; const OldLocation,
   NewLocation: TLocationCoord2D);
-var
-  UTM: TPosicion;
-  Posc: TTile;
-  Coords: TCoords;
 begin
-  CargarCoordenadas(NewLocation,UTM);
-  Ubication.Lat:=FormatFloat('#0.######',NewLocation.Latitude);
-  Ubication.Lon:=FormatFloat('#0.######',NewLocation.Longitude);
-  Ubication.Este:=Round(UTM.X).ToString+' E';
-  Ubication.Norte:=Round(UTM.Y).ToString+' N';
-  Coords:=ObtenerCoordenadas(NewLocation,WebBrowser.Width,WebBrowser.Height,
-                             Round(TrBarZoom.Value));
-  Ubication.URLFull:=MapURL+FormatFloat('#0.######',Coords.TopLeft.Lon)+','+
-    FormatFloat('#0.######',Coords.TopLeft.Lat)+','+
-    FormatFloat('#0.######',Coords.BottomRight.Lon)+','+
-    FormatFloat('#0.######',Coords.BottomRight.Lat)+'&layer=mapnik';
-
-  if not IsNaN(NewLocation.Longitude) then
-  begin
-    ELon.Text:=Ubication.Lon;
-    EEste.Text:=Ubication.Este;
-  end;
-  if not IsNaN(NewLocation.Latitude) then
-  begin
-    ELat.Text:=Ubication.Lat;
-    ENorte.Text:=Ubication.Norte;
-  end;
-  WebBrowser.URL:=Ubication.URLFull;
-  //showmessage(Ubication.URLFull+' --- Zoom: '+Round(TrBarZoom.Value).ToString);
-  WebBrowser.StartLoading;
+  MostrarMapa(NewLocation);
 end;
 
 procedure TFPrinc.SBAcercaClick(Sender: TObject);
@@ -216,6 +217,7 @@ procedure TFPrinc.TrBarZoomChange(Sender: TObject);
 begin
   Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
   LZoom.Text:=Ubication.Zoom;
+  if SwGPS.IsChecked then BBuscarClick(Self);
 end;
 
 procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);
@@ -234,4 +236,6 @@ https://www.openstreetmap.org/export/embed.html?bbox=
 
 Ubication.URLFull:='https://tile.openstreetmap.org/'+Ubication.Zoom+
                      '/'+Posc.X.ToString+'/'+Posc.Y.ToString+'.png';
+
+WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
 }

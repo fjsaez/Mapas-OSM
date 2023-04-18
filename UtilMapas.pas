@@ -87,6 +87,8 @@ begin
   MakeTile.Zoom := Zoom;
   MakeTile.X := Trunc(FX);
   MakeTile.Y := Trunc(FY);
+  MakeTile.FractX := Frac(FX);
+  MakeTile.FractY := Frac(FY);
 end;
 
 function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
@@ -104,14 +106,33 @@ begin
   Result.Y := Trunc(FY);}
 end;
 
-{function GetLatLon(T: TTile): TMapPoint;
+function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
+                            Zoom: integer): TCoords;
 var
-  N: DWord;
+  FX,FY: Double;
+  Tile,TileTL,TileBR: TTile;
+
+  function GetLatLon(T: TTile): TMapPoint;
+  var
+    N: DWord;
+  begin
+    N:=1 shl T.Zoom;
+    Result.Lat:=RadToDeg(ArcTan(Sinh(Pi*(1-2*(T.Y+T.FractY)/N))));
+    Result.Lon:=(T.X+T.FractX)/N*360-180;
+  end;
+
 begin
-  N:=1 shl T.Zoom;
-  Result.Lat:=RadToDeg(ArcTan(Sinh(Pi*(1-2*(T.Y+T.FractY)/N))));
-  Result.Lon:=(T.X+T.FractX)/N*360-180;
-end;          }
+  Tile:=GetTileNumber(MPto,Zoom);
+  //se obtienen las coordenadas de ambas esquinas:
+  FX:=Tile.X+Tile.FractX-(Ancho/2/256);
+  FY:=Tile.Y+Tile.FractY-(Alto/2/256);
+  TileTL:=MakeTile(FX,FY,Zoom);
+  Result.TopLeft:=GetLatLon(TileTL);
+  FX:=Tile.X+Tile.FractX+(Ancho/2/256);
+  FY:=Tile.Y+Tile.FractY+(Alto/2/256);
+  TileBR:=MakeTile(FX,FY,Zoom);
+  Result.BottomRight:=GetLatLon(TileBR);
+end;
 
 procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
 var
@@ -155,34 +176,6 @@ begin
       Inc(Pos);
     end;
   end;
-end;
-
-function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
-                            Zoom: integer): TCoords;
-var
-  FX,FY: Double;
-  Tile,TileTL,TileBR: TTile;
-
-  function GetLatLon(T: TTile): TMapPoint;
-  var
-    N: DWord;
-  begin
-    N:=1 shl T.Zoom;
-    Result.Lat:=RadToDeg(ArcTan(Sinh(Pi*(1-2*(T.Y+T.FractY)/N))));
-    Result.Lon:=(T.X+T.FractX)/N*360-180;
-  end;
-
-begin
-  Tile:=GetTileNumber(MPto,Zoom);
-  //se obtienen las coordenadas de ambas esquinas:
-  FX:=Tile.X+Tile.FractX-(Ancho/2/256);
-  FY:=Tile.Y+Tile.FractY-(Alto/2/256);
-  TileTL:=MakeTile(FX,FY,Zoom);
-  Result.TopLeft:=GetLatLon(TileTL);
-  FX:=Tile.X+Tile.FractX+(Ancho/2/256);
-  FY:=Tile.Y+Tile.FractY+(Alto/2/256);
-  TileBR:=MakeTile(FX,FY,Zoom);
-  Result.BottomRight:=GetLatLon(TileBR);
 end;
 
 end.

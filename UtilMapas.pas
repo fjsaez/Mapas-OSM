@@ -101,9 +101,6 @@ begin
   RLat := DegToRad(MP.Latitude);
   FY := (1 - Ln(Tan(RLat) + Sec(RLat)) / Pi) * N / 2;
   Result := MakeTile(FX, FY, Zoom);
-  {Result.Zoom:=Zoom;
-  Result.X := Trunc(FX);
-  Result.Y := Trunc(FY);}
 end;
 
 function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;

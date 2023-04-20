@@ -38,11 +38,9 @@ type
   function Orientacion(Grados: double): string;
   function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
   function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
- // function GetLatLon(T: TTile): TMapPoint;
-  procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
-  procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
   function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
                               Zoom: integer): TCoords;
+  procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
 
 implementation
 
@@ -84,23 +82,23 @@ end;
 
 function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
 begin
-  MakeTile.Zoom := Zoom;
-  MakeTile.X := Trunc(FX);
-  MakeTile.Y := Trunc(FY);
-  MakeTile.FractX := Frac(FX);
-  MakeTile.FractY := Frac(FY);
+  MakeTile.Zoom:=Zoom;
+  MakeTile.X:=Trunc(FX);
+  MakeTile.Y:=Trunc(FY);
+  MakeTile.FractX:=Frac(FX);
+  MakeTile.FractY:=Frac(FY);
 end;
 
 function GetTileNumber(MP: TLocationCoord2D; Zoom: Integer): TTile;
 var
   N: DWord;
-  RLat, FX, FY: Extended;
+  RLat,FX,FY: Extended;
 begin
-  N := 1 shl Zoom;
-  FX := (MP.Longitude + 180) * N / 360;
-  RLat := DegToRad(MP.Latitude);
-  FY := (1 - Ln(Tan(RLat) + Sec(RLat)) / Pi) * N / 2;
-  Result := MakeTile(FX, FY, Zoom);
+  N:=1 shl Zoom;
+  FX:=(MP.Longitude+180)*N/360;
+  RLat:=DegToRad(MP.Latitude);
+  FY:=(1-Ln(Tan(RLat)+Sec(RLat))/Pi)*N/2;
+  Result:=MakeTile(FX,FY,Zoom);
 end;
 
 function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
@@ -142,37 +140,6 @@ begin
   CoordPos.CG:=CoordGPS;
   CoordPos.X:=UTM.X;
   CoordPos.Y:=UTM.Y;
-end;
-
-procedure ParseURLToCoords(sURL: string; var Ubic: TUbicacion);
-var
-  I,Pos: integer;
-begin
-  Ubic.Zoom:='';
-  Ubic.Lat:='';
-  Ubic.Lon:='';
-  Ubic.URLFull:=sURL;
-  if sURL<>MapURL then
-  begin
-    //desgranar aquí partiendo de la cadena "#map="
-    Pos:=Length(MapURL+'#map=')+1;
-    for I:=1 to 2 do
-    begin
-      while Copy(sURL,Pos,1)<>'/' do
-      begin
-        if I=1 then Ubic.Zoom:=Ubic.Zoom+Copy(sURL,Pos,1)  //el zoom
-               else Ubic.Lat:=Ubic.Lat+Copy(sURL,Pos,1);   //la latitud
-        Inc(Pos);
-      end;
-      Pos:=Pos+1;
-    end;
-    //se obtiene la longitud:
-    while Pos<=Length(sURL) do
-    begin
-      Ubic.Lon:=Ubic.Lon+Copy(sURL,Pos,1);
-      Inc(Pos);
-    end;
-  end;
 end;
 
 end.

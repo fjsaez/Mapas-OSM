@@ -46,8 +46,8 @@ inherited FPrinc_LgXhdpiPh: TFPrinc_LgXhdpiPh
       Size.Width = 450.000000000000000000
       Size.Height = 487.000000000000000000
       inherited WebBrowser: TWebBrowser
-        Size.Width = 450.000000000000000000
-        Size.Height = 487.000000000000000000
+        Size.Width = 440.000000000000000000
+        Size.Height = 477.000000000000000000
       end
     end
     inherited LayPanel: TLayout

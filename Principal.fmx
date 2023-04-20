@@ -103,9 +103,13 @@ object FPrinc: TFPrinc
       TabOrder = 1
       object WebBrowser: TWebBrowser
         Align = Client
-        Size.Width = 455.000000000000000000
-        Size.Height = 443.000000000000000000
+        Size.Width = 445.000000000000000000
+        Size.Height = 433.000000000000000000
         Size.PlatformDefault = False
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
         WindowsEngine = IEOnly
         URL = 
           'https://www.openstreetmap.org/export/embed.html?bbox=-73.400,0.4' +

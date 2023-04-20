@@ -10,7 +10,6 @@ uses
 type
   TFrmAcerca = class(TFrame)
     RectPrinc: TRectangle;
-    Rectangle: TRectangle;
     LayAcerca: TLayout;
     LayNombre: TLayout;
     Label1: TLabel;
@@ -27,6 +26,8 @@ type
     BAceptar: TButton;
     LayMensaje: TLayout;
     Label5: TLabel;
+    Rectangle: TRectangle;
+    RectFondo: TRectangle;
   private
     { Private declarations }
   public

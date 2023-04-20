@@ -47,6 +47,7 @@ type
     ImgFlecha: TImage;
     LayAcerca: TLayout;
     FrmAcerca1: TFrmAcerca;
+    Imagen: TImage;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -78,7 +79,6 @@ implementation
 
 {$R *.fmx}
 {$R *.BAE2E2665F7E41AE9F0947E9D8BC3706.fmx ANDROID}
-{$R *.LgXhdpiPh.fmx ANDROID}
 
 uses
   System.Permissions, FMX.DialogService;
@@ -229,6 +229,8 @@ begin
 end;
 
 end.
+
+  { TODO : - Guardar en archivo .ini el último valor del zoom }
 
 { más ajustado a Venezuela:
 https://www.openstreetmap.org/export/embed.html?bbox=

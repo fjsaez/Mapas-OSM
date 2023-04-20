@@ -3,17 +3,28 @@ object FrmAcerca: TFrmAcerca
   Size.Width = 455.000000000000000000
   Size.Height = 651.000000000000000000
   Size.PlatformDefault = False
+  object RectFondo: TRectangle
+    Align = Client
+    Fill.Color = claBlack
+    Size.Width = 455.000000000000000000
+    Size.Height = 651.000000000000000000
+    Size.PlatformDefault = False
+  end
   object RectPrinc: TRectangle
     Align = Center
     Size.Width = 300.000000000000000000
     Size.Height = 400.000000000000000000
     Size.PlatformDefault = False
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
     object Rectangle: TRectangle
       Align = Contents
       Fill.Color = claPapayawhip
       Size.Width = 300.000000000000000000
       Size.Height = 400.000000000000000000
       Size.PlatformDefault = False
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
     end
     object LayAcerca: TLayout
       Align = Contents

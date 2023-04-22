@@ -10,7 +10,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.WebBrowser,
   FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, FMX.Layouts, FMX.Objects,
   FMX.Ani, System.Sensors, System.Sensors.Components, UTM_WGS84, System.Math,
-  Acerca, UtilMapas;
+  System.IOUtils, Acerca, UtilMapas;
 
 type
   TFPrinc = class(TForm)
@@ -139,17 +139,41 @@ end;
 procedure TFPrinc.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator:='.';
+  //la URL por defecto (muestra a Venezuela):
+  {WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
+                  '-73.400,0.400,-59.700,12.600&layer=mapnik';}
   WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-                  '-73.400,0.400,-59.700,12.600&layer=mapnik';
-  LZoom.Text:=Trunc(TrBarZoom.Value).ToString;
+                  '-73.3650,0.6350,-59.8000,12.265&layer=mapnik';
+         // -73.3650,0.6350,-59.8000,12.265
+  //se cargan los valores guardados en archivo .ini:
+  Sistema.ArchivoIni:=TPath.GetHomePath+'/MisMapas.ini';
+  Sistema.Zoom:=10;
+  TrBarZoom.Value:=10;
+  if FileExists(Sistema.ArchivoIni) then
+  begin
+    CargarINI;
+    lrumbo.Text:=copy(Sistema.ArchivoIni,Sistema.ArchivoIni.Length-22,20);
+  end
+  else
+  begin
+    //TrBarZoom.Value:=10;
+    GuardarIni(Sistema.Zoom);
+    lrumbo.Text:='no hay';
+  end;
+  TrBarZoom.Value:=Sistema.Zoom;
+  LZoom.Text:=Sistema.Zoom.ToString;
   //esto es temporal:
   ELon.Text:='-67.4181';
   ELat.Text:='8.9047';
+
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
 begin
   WebBrowser.StartLoading;
+  {if FileExists(Sistema.ArchivoIni) then
+    lrumbo.Text:=Sistema.ArchivoIni
+    else lrumbo.Text:='no hay';}
 end;
 
 procedure TFPrinc.FrmAcerca1BAceptarClick(Sender: TObject);
@@ -218,6 +242,7 @@ begin
   Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
   LZoom.Text:=Ubication.Zoom;
   if SwGPS.IsChecked then BBuscarClick(Self);
+  GuardarIni(Round(TrBarZoom.Value));
 end;
 
 procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);

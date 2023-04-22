@@ -22,7 +22,7 @@ object FPrinc: TFPrinc
       Size.Width = 455.000000000000000000
       Size.Height = 651.000000000000000000
       Size.PlatformDefault = False
-      inherited RectPrinc: TRectangle [0]
+      inherited RectPrinc: TRectangle
         inherited LayAcerca: TLayout
           inherited LayNombre: TLayout
             inherited Label1: TLabel
@@ -50,8 +50,6 @@ object FPrinc: TFPrinc
             end
           end
         end
-      end
-      inherited RectFondo: TRectangle [1]
       end
     end
   end

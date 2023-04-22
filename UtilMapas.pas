@@ -3,9 +3,15 @@ unit UtilMapas;
 interface
 
 uses
-  System.Math, System.Sensors, System.Types, UTM_WGS84;
+  System.Math, System.Sensors, System.Types, System.IniFiles, System.SysUtils,
+  UTM_WGS84;
 
 type
+  TSistema = record
+    ArchivoIni: string;
+    Zoom: integer;
+  end;
+
   TMapPoint = record
     Lat,Lon: Double;
   end;
@@ -34,6 +40,11 @@ type
   const
     MapURL='https://www.openstreetmap.org/export/embed.html?bbox=';
 
+  var
+    Sistema: TSistema;
+
+  procedure CargarINI;
+  procedure GuardarIni(Zoom: byte);
   function CaractExiste(Strng: string; Charact: char): boolean;
   function Orientacion(Grados: double): string;
   function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
@@ -43,6 +54,33 @@ type
   procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
 
 implementation
+
+{Lee los valores guardados del respectivo archivo .ini}
+procedure CargarINI;
+var
+  Ini: TIniFile;
+begin
+  try
+    Ini:=TIniFile.Create(Sistema.ArchivoIni);
+    Sistema.Zoom:=Ini.ReadString('Zoom','Valor','').ToInteger;
+  finally
+    Ini.Free;
+  end;
+end;
+
+{Crea el archivo ini con los el valor del zoom}
+procedure GuardarIni(Zoom: byte);
+var
+  Ini: TIniFile;
+begin
+  try
+    Ini:=TIniFile.Create(Sistema.ArchivoIni);
+    Ini.WriteString('Zoom','Valor',Sistema.Zoom.ToString);
+    Sistema.Zoom:=Ini.ReadString('Zoom','Valor','').ToInteger;
+  finally
+    Ini.Free;
+  end;
+end;
 
 function CaractExiste(Strng: string; Charact: char): boolean;
 var

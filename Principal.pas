@@ -140,8 +140,6 @@ procedure TFPrinc.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator:='.';
   //la URL por defecto (muestra a Venezuela):
-  {WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-                  '-73.400,0.400,-59.700,12.600&layer=mapnik';}
   WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
                   '-73.3650,0.6350,-59.8000,12.265&layer=mapnik';
          // -73.3650,0.6350,-59.8000,12.265

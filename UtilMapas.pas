@@ -75,7 +75,7 @@ var
 begin
   try
     Ini:=TIniFile.Create(Sistema.ArchivoIni);
-    Ini.WriteString('Zoom','Valor',Sistema.Zoom.ToString);
+    Ini.WriteString('Zoom','Valor',Zoom.ToString);
     Sistema.Zoom:=Ini.ReadString('Zoom','Valor','').ToInteger;
   finally
     Ini.Free;

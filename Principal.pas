@@ -142,36 +142,20 @@ begin
   //la URL por defecto (muestra a Venezuela):
   WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
                   '-73.3650,0.6350,-59.8000,12.265&layer=mapnik';
-         // -73.3650,0.6350,-59.8000,12.265
   //se cargan los valores guardados en archivo .ini:
   Sistema.ArchivoIni:=TPath.GetHomePath+'/MisMapas.ini';
-  Sistema.Zoom:=10;
-  TrBarZoom.Value:=10;
-  if FileExists(Sistema.ArchivoIni) then
-  begin
-    CargarINI;
-    lrumbo.Text:=copy(Sistema.ArchivoIni,Sistema.ArchivoIni.Length-22,20);
-  end
-  else
-  begin
-    //TrBarZoom.Value:=10;
-    GuardarIni(Sistema.Zoom);
-    lrumbo.Text:='no hay';
-  end;
+  if FileExists(Sistema.ArchivoIni) then CargarINI
+                                    else GuardarIni(Sistema.Zoom);
   TrBarZoom.Value:=Sistema.Zoom;
   LZoom.Text:=Sistema.Zoom.ToString;
   //esto es temporal:
   ELon.Text:='-67.4181';
   ELat.Text:='8.9047';
-
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);
 begin
   WebBrowser.StartLoading;
-  {if FileExists(Sistema.ArchivoIni) then
-    lrumbo.Text:=Sistema.ArchivoIni
-    else lrumbo.Text:='no hay';}
 end;
 
 procedure TFPrinc.FrmAcerca1BAceptarClick(Sender: TObject);
@@ -238,9 +222,10 @@ end;
 procedure TFPrinc.TrBarZoomChange(Sender: TObject);
 begin
   Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
+  Sistema.Zoom:=Round(TrBarZoom.Value);
   LZoom.Text:=Ubication.Zoom;
   if SwGPS.IsChecked then BBuscarClick(Self);
-  GuardarIni(Round(TrBarZoom.Value));
+  GuardarIni(Sistema.Zoom);
 end;
 
 procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);

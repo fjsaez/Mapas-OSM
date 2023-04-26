@@ -149,8 +149,8 @@ begin
   TrBarZoom.Value:=Sistema.Zoom;
   LZoom.Text:=Sistema.Zoom.ToString;
   //esto es temporal:
-  ELon.Text:='-67.4181';
-  ELat.Text:='8.9047';
+  {ELon.Text:='-67.4181';
+  ELat.Text:='8.9047';}
 end;
 
 procedure TFPrinc.FormShow(Sender: TObject);

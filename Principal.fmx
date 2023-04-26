@@ -194,9 +194,6 @@ object FPrinc: TFPrinc
           Margins.Right = 10.000000000000000000
           Margins.Bottom = 10.000000000000000000
           WindowsEngine = IEOnly
-          URL = 
-            'https://www.openstreetmap.org/export/embed.html?bbox=-73.400,0.4' +
-            '00,-59.700,12.600&layer=mapnik'
           OnDidFinishLoad = WebBrowserDidFinishLoad
         end
       end

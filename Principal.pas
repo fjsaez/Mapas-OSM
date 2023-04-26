@@ -48,6 +48,7 @@ type
     LayAcerca: TLayout;
     FrmAcerca1: TFrmAcerca;
     Imagen: TImage;
+    RectBrowser: TRectangle;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -216,6 +217,7 @@ begin
   {$ENDIF}
   ELon.ReadOnly:=SwGPS.IsChecked;
   ELat.ReadOnly:=SwGPS.IsChecked;
+  BBuscar.Visible:=not SwGPS.IsChecked;
   Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
 end;
 

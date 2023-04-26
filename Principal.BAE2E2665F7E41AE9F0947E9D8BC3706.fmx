@@ -48,9 +48,13 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
       inherited Imagen: TImage
         Size.Width = 480.000000000000000000
         Size.Height = 706.000000000000000000
-        inherited WebBrowser: TWebBrowser
+        inherited RectBrowser: TRectangle
           Size.Width = 460.000000000000000000
           Size.Height = 686.000000000000000000
+          inherited WebBrowser: TWebBrowser
+            Size.Width = 458.000000000000000000
+            Size.Height = 684.000000000000000000
+          end
         end
       end
     end

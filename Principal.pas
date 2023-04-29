@@ -237,8 +237,6 @@ end;
 
 end.
 
-  { TODO : - Guardar en archivo .ini el último valor del zoom }
-
 { más ajustado a Venezuela:
 https://www.openstreetmap.org/export/embed.html?bbox=
         -73.400,0.400,-59.700,12.600&layer=mapnik

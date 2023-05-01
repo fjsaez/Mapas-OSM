@@ -204,7 +204,6 @@ object FPrinc: TFPrinc
             Margins.Right = 2.000000000000000000
             Margins.Bottom = 2.000000000000000000
             WindowsEngine = IEOnly
-            OnDidFinishLoad = WebBrowserDidFinishLoad
           end
         end
       end

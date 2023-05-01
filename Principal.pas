@@ -53,7 +53,6 @@ type
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure TrBarZoomChange(Sender: TObject);
-    procedure WebBrowserDidFinishLoad(ASender: TObject);
     procedure ELatKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure ELatChange(Sender: TObject);
@@ -225,14 +224,6 @@ begin
   LZoom.Text:=Ubication.Zoom;
   if SwGPS.IsChecked then BBuscarClick(Self);
   GuardarIni(Sistema.Zoom);
-end;
-
-procedure TFPrinc.WebBrowserDidFinishLoad(ASender: TObject);
-begin
-  {ParseURLToCoords(WebBrowser.URL,Ubication);
-  ELat.Text:=Ubication.Lat;
-  ELon.Text:=Ubication.Lon;
-  TrBarZoom.Value:=StrToFloat(Ubication.Zoom);}
 end;
 
 end.

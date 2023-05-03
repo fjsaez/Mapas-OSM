@@ -140,8 +140,7 @@ procedure TFPrinc.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator:='.';
   //la URL por defecto (muestra a Venezuela):
-  WebBrowser.URL:='https://www.openstreetmap.org/export/embed.html?bbox='+
-                  '-73.3650,0.6350,-59.8000,12.265&layer=mapnik';
+  WebBrowser.URL:=MapURL+'-73.3650,0.6350,-59.8000,12.265&layer=mapnik';
   //se cargan los valores guardados en archivo .ini:
   Sistema.ArchivoIni:=TPath.GetHomePath+'/MisMapas.ini';
   if FileExists(Sistema.ArchivoIni) then CargarINI

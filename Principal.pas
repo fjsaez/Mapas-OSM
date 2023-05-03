@@ -10,7 +10,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.WebBrowser,
   FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, FMX.Layouts, FMX.Objects,
   FMX.Ani, System.Sensors, System.Sensors.Components, UTM_WGS84, System.Math,
-  System.IOUtils, Acerca, UtilMapas;
+  System.IOUtils, Acerca, UtilMapas, FMX.Effects;
 
 type
   TFPrinc = class(TForm)
@@ -49,6 +49,8 @@ type
     FrmAcerca1: TFrmAcerca;
     Imagen: TImage;
     RectBrowser: TRectangle;
+    RectBuscar: TRectangle;
+    ShadowEffect1: TShadowEffect;
     procedure FormShow(Sender: TObject);
     procedure BBuscarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -64,6 +66,7 @@ type
     procedure LocSensorHeadingChanged(Sender: TObject;
       const AHeading: THeading);
     procedure FrmAcerca1BAceptarClick(Sender: TObject);
+    procedure ELonChange(Sender: TObject);
   private
     procedure MostrarMapa(Loc: TLocationCoord2D);
   public
@@ -86,7 +89,6 @@ uses
 procedure TFPrinc.MostrarMapa(Loc: TLocationCoord2D);
 var
   UTM: TPosicion;
-  Posc: TTile;
   Coords: TCoords;
 begin
   CargarCoordenadas(Loc,UTM);
@@ -127,7 +129,7 @@ end;
 
 procedure TFPrinc.ELatChange(Sender: TObject);
 begin
-  TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
+  //TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
 end;
 
 procedure TFPrinc.ELatKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
@@ -136,9 +138,15 @@ begin
   if (KeyChar='.') and CaractExiste(TEdit(Sender).Text,'.') then KeyChar:=#0;
 end;
 
+procedure TFPrinc.ELonChange(Sender: TObject);
+begin
+  BBuscar.Enabled:=(ELon.Text<>'') and (ELat.Text<>'');
+end;
+
 procedure TFPrinc.FormCreate(Sender: TObject);
 begin
   FormatSettings.DecimalSeparator:='.';
+  ELonChange(Self);
   //la URL por defecto (muestra a Venezuela):
   WebBrowser.URL:=MapURL+'-73.3650,0.6350,-59.8000,12.265&layer=mapnik';
   //se cargan los valores guardados en archivo .ini:
@@ -212,7 +220,7 @@ begin
   {$ENDIF}
   ELon.ReadOnly:=SwGPS.IsChecked;
   ELat.ReadOnly:=SwGPS.IsChecked;
-  BBuscar.Visible:=not SwGPS.IsChecked;
+  RectBuscar.Visible:=not SwGPS.IsChecked;
   Ubication.Zoom:=Round(TrBarZoom.Value).ToString;
 end;
 

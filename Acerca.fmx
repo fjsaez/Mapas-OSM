@@ -525,14 +525,30 @@ object FrmAcerca: TFrmAcerca
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 6
-        object BAceptar: TButton
+        object RectAceptar: TRectangle
           Align = Center
-          Size.Width = 161.000000000000000000
+          Fill.Color = claNull
+          Size.Width = 160.000000000000000000
           Size.Height = 34.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 0
-          Text = 'Aceptar'
-          TintColor = claGold
+          XRadius = 5.000000000000000000
+          YRadius = 5.000000000000000000
+          object ShadowEffect1: TShadowEffect
+            Distance = 3.000000000000000000
+            Direction = 45.000000000000000000
+            Softness = 0.300000011920929000
+            Opacity = 0.600000023841857900
+            ShadowColor = claBlack
+          end
+          object BAceptar: TButton
+            Align = Client
+            Size.Width = 160.000000000000000000
+            Size.Height = 34.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Aceptar'
+            TintColor = claGold
+          end
         end
       end
       object LayMensaje: TLayout

@@ -52,8 +52,8 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
           Size.Width = 460.000000000000000000
           Size.Height = 686.000000000000000000
           inherited WebBrowser: TWebBrowser
-            Size.Width = 458.000000000000000000
-            Size.Height = 684.000000000000000000
+            Size.Width = 456.000000000000000000
+            Size.Height = 682.000000000000000000
           end
         end
       end
@@ -65,9 +65,6 @@ inherited FPrinc_BAE2E2665F7E41AE9F0947E9D8BC3706: TFPrinc_BAE2E2665F7E41AE9F094
         Size.Width = 480.000000000000000000
         inherited LayBuscar: TLayout
           Size.Width = 480.000000000000000000
-          inherited BBuscar: TButton
-            Position.X = 330.000000000000000000
-          end
           inherited SwGPS: TSwitch
             Size.Height = 30.000000000000000000
           end

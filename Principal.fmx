@@ -46,10 +46,8 @@ object FPrinc: TFPrinc
           end
           inherited Layout2: TLayout
             inherited RectAceptar: TRectangle
-              inherited BAceptar: TButton [0]
+              inherited BAceptar: TButton
                 OnClick = FrmAcerca1BAceptarClick
-              end
-              inherited ShadowEffect1: TShadowEffect [1]
               end
             end
           end

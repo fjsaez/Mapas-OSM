@@ -44,7 +44,7 @@ type
     Sistema: TSistema;
 
   procedure CargarINI;
-  procedure GuardarIni(Zoom: byte);
+  procedure GuardarINI(Zoom: byte);
   function CaractExiste(Strng: string; Charact: char): boolean;
   function Orientacion(Grados: double): string;
   function MakeTile(FX,FY: Extended; Zoom: integer): TTile;
@@ -69,7 +69,7 @@ begin
 end;
 
 {Crea el archivo ini con los el valor del zoom}
-procedure GuardarIni(Zoom: byte);
+procedure GuardarINI(Zoom: byte);
 var
   Ini: TIniFile;
 begin

@@ -57,7 +57,6 @@ type
     procedure TrBarZoomChange(Sender: TObject);
     procedure ELatKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
-    procedure ELatChange(Sender: TObject);
     procedure SBAcercaClick(Sender: TObject);
     procedure SBSalirClick(Sender: TObject);
     procedure LocSensorLocationChanged(Sender: TObject; const OldLocation,
@@ -127,11 +126,6 @@ begin
   MostrarMapa(Coord);
 end;
 
-procedure TFPrinc.ELatChange(Sender: TObject);
-begin
-  //TrBarZoom.Value:=StrToFloat(Ubication.Zoom);
-end;
-
 procedure TFPrinc.ELatKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
   Shift: TShiftState);
 begin
@@ -152,7 +146,7 @@ begin
   //se cargan los valores guardados en archivo .ini:
   Sistema.ArchivoIni:=TPath.GetHomePath+'/MisMapas.ini';
   if FileExists(Sistema.ArchivoIni) then CargarINI
-                                    else GuardarIni(Sistema.Zoom);
+                                    else GuardarINI(Sistema.Zoom);
   TrBarZoom.Value:=Sistema.Zoom;
   LZoom.Text:=Sistema.Zoom.ToString;
 end;
@@ -230,7 +224,7 @@ begin
   Sistema.Zoom:=Round(TrBarZoom.Value);
   LZoom.Text:=Ubication.Zoom;
   if SwGPS.IsChecked then BBuscarClick(Self);
-  GuardarIni(Sistema.Zoom);
+  GuardarINI(Sistema.Zoom);
 end;
 
 end.

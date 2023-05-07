@@ -235,6 +235,4 @@ https://www.openstreetmap.org/export/embed.html?bbox=
 
 Ubication.URLFull:='https://tile.openstreetmap.org/'+Ubication.Zoom+
                      '/'+Posc.X.ToString+'/'+Posc.Y.ToString+'.png';
-
-WebBrowser.URL:='https://www.openstreetmap.org/#map=6/6.447/-66.579';
 }

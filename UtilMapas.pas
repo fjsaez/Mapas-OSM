@@ -4,7 +4,7 @@ interface
 
 uses
   System.Math, System.Sensors, System.Types, System.IniFiles, System.SysUtils,
-  UTM_WGS84;
+  UTM_WGS84, Androidapi.JNI.Location;
 
 type
   TSistema = record
@@ -52,8 +52,12 @@ type
   function ObtenerCoordenadas(MPto: TLocationCoord2D; Ancho,Alto: Double;
                               Zoom: integer): TCoords;
   procedure CargarCoordenadas(CoordGPS: TLocationCoord2D; var CoordPos: TPosicion);
+  //procedure ActivarGPS(LcSensor: TLocationSensor; Activo: boolean);
 
 implementation
+
+uses
+  System.Permissions, FMX.DialogService;
 
 {Lee los valores guardados del respectivo archivo .ini}
 procedure CargarINI;
@@ -179,5 +183,23 @@ begin
   CoordPos.X:=UTM.X;
   CoordPos.Y:=UTM.Y;
 end;
+
+{procedure ActivarGPS(LcSensor: TLocationSensor; Activo: boolean);
+const
+  PermissionAccessFineLocation='android.permission.ACCESS_FINE_LOCATION';
+begin
+  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+    procedure(const APermissions: TClassicStringDynArray;
+              const AGrantResults: TClassicPermissionStatusDynArray)
+    begin
+      if (Length(AGrantResults)=1) and (AGrantResults[0]=TPermissionStatus.Granted) then
+        LcSensor.Active:=Activo
+      else
+      begin
+        Activo:=false;
+        TDialogService.ShowMessage('Acceso a Localización no está permitido');
+      end;
+    end);
+end; }
 
 end.

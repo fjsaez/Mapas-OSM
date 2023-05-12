@@ -85,6 +85,24 @@ implementation
 uses
   System.Permissions, FMX.DialogService;
 
+procedure ActivarGPS(LcSensor: TLocationSensor; Activo: boolean);
+const
+  PermissionAccessFineLocation='android.permission.ACCESS_FINE_LOCATION';
+begin
+  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+    procedure(const APermissions: TClassicStringDynArray;
+              const AGrantResults: TClassicPermissionStatusDynArray)
+    begin
+      if (Length(AGrantResults)=1) and (AGrantResults[0]=TPermissionStatus.Granted) then
+        LcSensor.Active:=Activo
+      else
+      begin
+        Activo:=false;
+        TDialogService.ShowMessage('Acceso a Localización no está permitido');
+      end;
+    end);
+end;
+
 procedure TFPrinc.MostrarMapa(Loc: TLocationCoord2D);
 var
   UTM: TPosicion;
@@ -193,11 +211,12 @@ begin
 end;
 
 procedure TFPrinc.SwGPSSwitch(Sender: TObject);
-const
-  PermissionAccessFineLocation='android.permission.ACCESS_FINE_LOCATION';
+//const
+  //PermissionAccessFineLocation='android.permission.ACCESS_FINE_LOCATION';
 begin
   {$IFDEF ANDROID}
-  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+  ActivarGPS(LocSensor,SwGPS.IsChecked);
+  {PermissionsService.RequestPermissions([PermissionAccessFineLocation],
     procedure(const APermissions: TClassicStringDynArray;
               const AGrantResults: TClassicPermissionStatusDynArray)
     begin
@@ -206,9 +225,9 @@ begin
       else
       begin
         SwGPS.IsChecked:=false;
-        TDialogService.ShowMessage('Permiso de Localización no está permitido');
+        TDialogService.ShowMessage('Permiso de Localización no está disponible');
       end;
-    end);
+    end);}
   {$ELSE}
     LocSensor.Active := SwitchGPS.IsChecked;
   {$ENDIF}

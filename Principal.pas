@@ -211,23 +211,9 @@ begin
 end;
 
 procedure TFPrinc.SwGPSSwitch(Sender: TObject);
-//const
-  //PermissionAccessFineLocation='android.permission.ACCESS_FINE_LOCATION';
 begin
   {$IFDEF ANDROID}
   ActivarGPS(LocSensor,SwGPS.IsChecked);
-  {PermissionsService.RequestPermissions([PermissionAccessFineLocation],
-    procedure(const APermissions: TClassicStringDynArray;
-              const AGrantResults: TClassicPermissionStatusDynArray)
-    begin
-      if (Length(AGrantResults)=1) and (AGrantResults[0]=TPermissionStatus.Granted) then
-        LocSensor.Active:=SwGPS.IsChecked
-      else
-      begin
-        SwGPS.IsChecked:=false;
-        TDialogService.ShowMessage('Permiso de Localización no está disponible');
-      end;
-    end);}
   {$ELSE}
     LocSensor.Active := SwitchGPS.IsChecked;
   {$ENDIF}
